@@ -1,0 +1,16 @@
+/Users/kirill/Desktop/C#/TGBot/TGBot/bin/Debug/netcoreapp3.1/TGBot
+/Users/kirill/Desktop/C#/TGBot/TGBot/bin/Debug/netcoreapp3.1/TGBot.deps.json
+/Users/kirill/Desktop/C#/TGBot/TGBot/bin/Debug/netcoreapp3.1/TGBot.runtimeconfig.json
+/Users/kirill/Desktop/C#/TGBot/TGBot/bin/Debug/netcoreapp3.1/TGBot.runtimeconfig.dev.json
+/Users/kirill/Desktop/C#/TGBot/TGBot/bin/Debug/netcoreapp3.1/TGBot.dll
+/Users/kirill/Desktop/C#/TGBot/TGBot/bin/Debug/netcoreapp3.1/TGBot.pdb
+/Users/kirill/Desktop/C#/TGBot/TGBot/bin/Debug/netcoreapp3.1/HtmlAgilityPack.dll
+/Users/kirill/Desktop/C#/TGBot/TGBot/obj/Debug/netcoreapp3.1/TGBot.csproj.AssemblyReference.cache
+/Users/kirill/Desktop/C#/TGBot/TGBot/obj/Debug/netcoreapp3.1/TGBot.GeneratedMSBuildEditorConfig.editorconfig
+/Users/kirill/Desktop/C#/TGBot/TGBot/obj/Debug/netcoreapp3.1/TGBot.AssemblyInfoInputs.cache
+/Users/kirill/Desktop/C#/TGBot/TGBot/obj/Debug/netcoreapp3.1/TGBot.AssemblyInfo.cs
+/Users/kirill/Desktop/C#/TGBot/TGBot/obj/Debug/netcoreapp3.1/TGBot.csproj.CoreCompileInputs.cache
+/Users/kirill/Desktop/C#/TGBot/TGBot/obj/Debug/netcoreapp3.1/TGBot.csproj.CopyComplete
+/Users/kirill/Desktop/C#/TGBot/TGBot/obj/Debug/netcoreapp3.1/TGBot.dll
+/Users/kirill/Desktop/C#/TGBot/TGBot/obj/Debug/netcoreapp3.1/TGBot.pdb
+/Users/kirill/Desktop/C#/TGBot/TGBot/obj/Debug/netcoreapp3.1/TGBot.genruntimeconfig.cache

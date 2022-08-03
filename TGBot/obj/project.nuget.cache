@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "SiUvc3FKBFGk3CG3qVTXA2DR27JwJLSmChAkHG5NzwhreNXKKSM/KFvJd4UqYqmAzMYlAzNJZPCe/2fu8w1yIQ==",
+  "success": true,
+  "projectFilePath": "/Users/kirill/Desktop/C#/TGBot/TGBot/TGBot.csproj",
+  "expectedPackageFiles": [
+    "/Users/kirill/.nuget/packages/htmlagilitypack/1.11.43/htmlagilitypack.1.11.43.nupkg.sha512",
+    "/Users/kirill/.nuget/packages/microsoft.aspnetcore.app.ref/3.1.10/microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
+    "/Users/kirill/.nuget/packages/microsoft.netcore.app.host.osx-x64/3.1.26/microsoft.netcore.app.host.osx-x64.3.1.26.nupkg.sha512",
+    "/Users/kirill/.nuget/packages/microsoft.netcore.app.ref/3.1.0/microsoft.netcore.app.ref.3.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}

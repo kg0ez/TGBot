@@ -1,13 +1,27 @@
 ﻿<Properties StartupConfiguration="{BDCC07A8-A200-4401-81DA-F62DA16BD023}|Default">
-  <MonoDevelop.Ide.ItemProperties.Bot FirstBuild="True" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Bot/Program.cs">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Bot PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../../../../usr/local/share/dotnet/sdk/6.0.301/Microsoft.Common.CurrentVersion.targets">
     <Files>
-      <File FileName="Bot/Program.cs" Line="24" Column="1" />
+      <File FileName="Bot/Program.cs" Line="35" Column="5" />
+      <File FileName="Bot.Models/Data/ApplicationContext.cs" Line="19" Column="52" />
+      <File FileName="Bot.Models/Models/Movie.cs" Line="10" Column="24" />
+      <File FileName="../../../../../usr/local/share/dotnet/sdk/6.0.301/Microsoft.Common.CurrentVersion.targets" Line="4490" Column="35" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Bot" expanded="True">
+            <Node name="Model" expanded="True">
+              <Node name="Bot.Models" expanded="True">
+                <Node name="Data" expanded="True" />
+              </Node>
+            </Node>
             <Node name="Bot" expanded="True" />
           </Node>
         </State>
@@ -17,10 +31,4 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
 </Properties>

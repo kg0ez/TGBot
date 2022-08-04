@@ -5,6 +5,10 @@ VisualStudioVersion = 25.0.1700.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bot", "Bot\Bot.csproj", "{BDCC07A8-A200-4401-81DA-F62DA16BD023}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{A6471BBE-505B-4B28-A72C-FD56C2524492}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bot.Models", "Bot.Models\Bot.Models.csproj", "{5B438610-5DF2-48D8-BFFB-5678F0F66AEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,11 +19,18 @@ Global
 		{BDCC07A8-A200-4401-81DA-F62DA16BD023}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDCC07A8-A200-4401-81DA-F62DA16BD023}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDCC07A8-A200-4401-81DA-F62DA16BD023}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B438610-5DF2-48D8-BFFB-5678F0F66AEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B438610-5DF2-48D8-BFFB-5678F0F66AEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B438610-5DF2-48D8-BFFB-5678F0F66AEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B438610-5DF2-48D8-BFFB-5678F0F66AEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {05CB8DB8-BFA3-408E-9599-514A19D4EAB5}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5B438610-5DF2-48D8-BFFB-5678F0F66AEF} = {A6471BBE-505B-4B28-A72C-FD56C2524492}
 	EndGlobalSection
 EndGlobal

@@ -1,4 +1,7 @@
-﻿using Telegram.Bot;
+﻿using Bot.Models.Data;
+using Bot.Models.Models;
+using Microsoft.EntityFrameworkCore;
+using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
@@ -29,6 +32,7 @@ cts.Cancel();
 
 async Task HandleUpdatesAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
 {
+    
     if (update.Type == UpdateType.Message && update?.Message?.Text != null)
     {
         await HandleMessage(botClient, update.Message);
@@ -52,12 +56,13 @@ async Task HandleMessage(ITelegramBotClient botClient, Message message)
 
     if (message.Text == "/keyboard")
     {
-        ReplyKeyboardMarkup keyboard = new(new[]
-        {
-            new KeyboardButton[] {"Hello", "Goodbye"},
-            new KeyboardButton[] {"Привет", "Пока"}
-
-        })
+        ReplyKeyboardMarkup keyboard = new(
+            new KeyboardButton[] {"Start"}
+        )
+        //ReplyKeyboardMarkup keyboard = new(new[]
+        //{
+        //    new KeyboardButton[] {"Start"},
+        //})
         {
             ResizeKeyboard = true
         };
@@ -71,8 +76,8 @@ async Task HandleMessage(ITelegramBotClient botClient, Message message)
         {
             new[]
             {
-                InlineKeyboardButton.WithCallbackData("Similar Movie", "similar"),
-                InlineKeyboardButton.WithCallbackData("Next Movie", "next"),
+                InlineKeyboardButton.WithCallbackData("Similar Movie", "similar_movie"),
+                InlineKeyboardButton.WithCallbackData("Next Movie", "next_movie"),
             }
         });
         await botClient.SendTextMessageAsync(message.Chat.Id, "Choose inline:", replyMarkup: keyboard);
@@ -81,6 +86,7 @@ async Task HandleMessage(ITelegramBotClient botClient, Message message)
 
     await botClient.SendTextMessageAsync(message.Chat.Id, $"You said:\n{message.Text}");
 }
+
 async Task HandleCallbackQuery(ITelegramBotClient botClient, CallbackQuery callbackQuery)
 {
     if (callbackQuery.Data.StartsWith("similar"))
@@ -93,13 +99,20 @@ async Task HandleCallbackQuery(ITelegramBotClient botClient, CallbackQuery callb
     }
     if (callbackQuery.Data.StartsWith("next"))
     {
+        var movie = new Movie();
+        Random random = new Random();
+        int value = random.Next(0, 19);
+        using(ApplicationContext context = new ApplicationContext())
+        {
+            movie = context.Movies.AsNoTracking().FirstOrDefault(m => m.Id == value);
+        }
         InlineKeyboardMarkup keyboard = new(new[]
         {
             new[]
             {
                 InlineKeyboardButton.WithUrl(
                 text: "Ссылка на фильм",
-                url: "https://github.com/TelegramBots/Telegram.Bot"
+                url: $"{movie.Link}"
                 )
             },
             new[]
@@ -109,23 +122,15 @@ async Task HandleCallbackQuery(ITelegramBotClient botClient, CallbackQuery callb
             }
 
         });
-        //InlineKeyboardMarkup inlineKeyboard = new(new[]
-        //{
-
-        //    InlineKeyboardButton.WithUrl(
-        //    text: "Link to the Repository",
-        //    url: "https://github.com/TelegramBots/Telegram.Bot"
-        //    )
-        //});
-        //await botClient.SendTextMessageAsync(
-        //    chatId: callbackQuery.Message.Chat.Id,
-        //    text: "A message with an inline keyboard markup",
-        //    replyMarkup: keyboard,
-        //    cancellationToken: cts.Token);
+        
         await botClient.SendPhotoAsync(
                     chatId: callbackQuery.Message.Chat.Id,
-                    photo: "https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/4b27e219-a8a5-4d85-9874-57d6016e0837/600x900",
-                    "A message with an inline keyboard markup",
+                    photo: $"{movie.LinkPoster}",
+                    $"{movie.Title}"+Environment.NewLine+
+                    $"Жанр: {movie.Genre}"+ Environment.NewLine+
+                    $"Год: {movie.Release}" + Environment.NewLine +
+                    $"Страна: {movie.Country}" + Environment.NewLine +
+                    $"Сюжет: {movie.Sutitle}",
                     replyMarkup: keyboard,
                     cancellationToken: cts.Token);
         return;
@@ -134,6 +139,45 @@ async Task HandleCallbackQuery(ITelegramBotClient botClient, CallbackQuery callb
     await botClient.SendTextMessageAsync(
         callbackQuery.Message.Chat.Id,
         $"You choose with data: {callbackQuery.Data}");
+    return;
+}
+
+async Task GenerateMovie(ITelegramBotClient botClient, CallbackQuery callbackQuery)
+{
+    var movie = new Movie();
+    Random random = new Random();
+    int value = random.Next(0, 19);
+    using (ApplicationContext context = new ApplicationContext())
+    {
+        movie = context.Movies.AsNoTracking().FirstOrDefault(m => m.Id == value);
+    }
+    InlineKeyboardMarkup keyboard = new(new[]
+    {
+            new[]
+            {
+                InlineKeyboardButton.WithUrl(
+                text: "Ссылка на фильм",
+                url: $"{movie.Link}"
+                )
+            },
+            new[]
+            {
+                InlineKeyboardButton.WithCallbackData("Похожий фильм", "similar"),
+                InlineKeyboardButton.WithCallbackData("Следующий фильм", "next"),
+            }
+
+        });
+
+    await botClient.SendPhotoAsync(
+                chatId: callbackQuery.Message.Chat.Id,
+                photo: $"{movie.LinkPoster}",
+                $"{movie.Title}" + Environment.NewLine +
+                $"Жанр: {movie.Genre}" + Environment.NewLine +
+                $"Год: {movie.Release}" + Environment.NewLine +
+                $"Страна: {movie.Country}" + Environment.NewLine +
+                $"Сюжет: {movie.Sutitle}",
+                replyMarkup: keyboard,
+                cancellationToken: cts.Token);
     return;
 }
 
@@ -149,3 +193,17 @@ Task HandleErrorAsync(ITelegramBotClient client, Exception exception, Cancellati
     return Task.CompletedTask;
 }
 
+//InlineKeyboardMarkup inlineKeyboard = new(new[]
+//{
+
+//    InlineKeyboardButton.WithUrl(
+//    text: "Link to the Repository",
+//    url: "https://github.com/TelegramBots/Telegram.Bot"
+//    )
+//});
+//await botClient.SendTextMessageAsync(
+//    chatId: callbackQuery.Message.Chat.Id,
+//    text: "A message with an inline keyboard markup",
+//    replyMarkup: keyboard,
+//    cancellationToken: cts.Token);
+                    //photo: "https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/4b27e219-a8a5-4d85-9874-57d6016e0837/600x900",

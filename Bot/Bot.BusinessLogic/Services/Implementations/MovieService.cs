@@ -16,9 +16,9 @@ namespace Bot.BusinessLogic.Services.Implementations
         {
             var movie = new Movie();
             Random random = new Random();
-            int value = random.Next(1, 19);
             using (ApplicationContext context = new ApplicationContext())
             {
+                int value = random.Next(1, context.Movies.AsNoTracking().ToList().Count-1);
                 movie = context.Movies.AsNoTracking().FirstOrDefault(m => m.Id == value);
             }
             return movie!;

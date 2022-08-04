@@ -113,7 +113,7 @@ async Task GenerateMovie(Movie movie, long id, ITelegramBotClient botClient)
     await botClient.SendPhotoAsync(
                 chatId: id,
                 photo: $"{movie.LinkPoster}",
-                $"{movie.Title}" + Environment.NewLine +
+                $"{movie.Title.Replace("смотреть онлайн", "")}" + Environment.NewLine +
                 $"Жанр: {movie.Genre}" + Environment.NewLine +
                 $"Год: {movie.Release}" + Environment.NewLine +
                 $"Страна: {movie.Country}" + Environment.NewLine +

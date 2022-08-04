@@ -1,0 +1,12 @@
+/Users/kirill/Desktop/TGBot/Bot/Bot.Common/bin/Debug/net6.0/Bot.Common.deps.json
+/Users/kirill/Desktop/TGBot/Bot/Bot.Common/bin/Debug/net6.0/Bot.Common.dll
+/Users/kirill/Desktop/TGBot/Bot/Bot.Common/bin/Debug/net6.0/Bot.Common.pdb
+/Users/kirill/Desktop/TGBot/Bot/Bot.Common/obj/Debug/net6.0/Bot.Common.csproj.AssemblyReference.cache
+/Users/kirill/Desktop/TGBot/Bot/Bot.Common/obj/Debug/net6.0/Bot.Common.GeneratedMSBuildEditorConfig.editorconfig
+/Users/kirill/Desktop/TGBot/Bot/Bot.Common/obj/Debug/net6.0/Bot.Common.AssemblyInfoInputs.cache
+/Users/kirill/Desktop/TGBot/Bot/Bot.Common/obj/Debug/net6.0/Bot.Common.AssemblyInfo.cs
+/Users/kirill/Desktop/TGBot/Bot/Bot.Common/obj/Debug/net6.0/Bot.Common.csproj.CoreCompileInputs.cache
+/Users/kirill/Desktop/TGBot/Bot/Bot.Common/obj/Debug/net6.0/Bot.Common.dll
+/Users/kirill/Desktop/TGBot/Bot/Bot.Common/obj/Debug/net6.0/refint/Bot.Common.dll
+/Users/kirill/Desktop/TGBot/Bot/Bot.Common/obj/Debug/net6.0/Bot.Common.pdb
+/Users/kirill/Desktop/TGBot/Bot/Bot.Common/obj/Debug/net6.0/ref/Bot.Common.dll

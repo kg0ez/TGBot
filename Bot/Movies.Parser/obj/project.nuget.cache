@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "50r0pG9NjWs6FQ90ksgbPg/taVCiG6SMmNqJYCVkIqhfORnXeIoYg7HPwxR+VymTMzZEe63PDT9/MoDMGZAVqg==",
+  "success": true,
+  "projectFilePath": "/Users/kirill/Desktop/TGBot/Bot/Movies.Parser/Movies.Parser.csproj",
+  "expectedPackageFiles": [
+    "/Users/kirill/.nuget/packages/microsoft.aspnetcore.app.ref/3.1.10/microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
+    "/Users/kirill/.nuget/packages/microsoft.netcore.app.host.osx-x64/3.1.26/microsoft.netcore.app.host.osx-x64.3.1.26.nupkg.sha512",
+    "/Users/kirill/.nuget/packages/microsoft.netcore.app.ref/3.1.0/microsoft.netcore.app.ref.3.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}

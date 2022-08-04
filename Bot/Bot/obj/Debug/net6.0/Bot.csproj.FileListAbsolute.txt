@@ -58,3 +58,8 @@
 /Users/kirill/Desktop/TGBot/Bot/Bot/obj/Debug/net6.0/Bot.pdb
 /Users/kirill/Desktop/TGBot/Bot/Bot/obj/Debug/net6.0/Bot.genruntimeconfig.cache
 /Users/kirill/Desktop/TGBot/Bot/Bot/obj/Debug/net6.0/ref/Bot.dll
+/Users/kirill/Desktop/TGBot/Bot/Bot/bin/Debug/net6.0/AutoMapper.dll
+/Users/kirill/Desktop/TGBot/Bot/Bot/bin/Debug/net6.0/Bot.BusinessLogic.dll
+/Users/kirill/Desktop/TGBot/Bot/Bot/bin/Debug/net6.0/Bot.Common.dll
+/Users/kirill/Desktop/TGBot/Bot/Bot/bin/Debug/net6.0/Bot.BusinessLogic.pdb
+/Users/kirill/Desktop/TGBot/Bot/Bot/bin/Debug/net6.0/Bot.Common.pdb

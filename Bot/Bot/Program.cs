@@ -10,6 +10,10 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 var botClient = new TelegramBotClient("5414080253:AAFOrTfZx3QULazPNGakMhV7gWrmiPhCukg");
 
+string genre = string.Empty;
+int similarFilm = 0;
+List<Movie> movies = new List<Movie>();
+
 using var cts = new CancellationTokenSource();
 
 var receiverOptions = new ReceiverOptions
@@ -48,13 +52,13 @@ async Task HandleUpdatesAsync(ITelegramBotClient botClient, Update update, Cance
 
 async Task HandleMessage(ITelegramBotClient botClient, Message message)
 {
-    if (message.Text == "/start")
-    {
-        await botClient.SendTextMessageAsync(message.Chat.Id, "Choose commands: /inline | /keyboard");
-        return;
-    }
+    //if (message.Text == "/start")
+    //{
+    //    await botClient.SendTextMessageAsync(message.Chat.Id, "Choose commands: /inline | /keyboard");
+    //    return;
+    //}
 
-    if (message.Text == "/keyboard")
+    if (message.Text == "/start")
     {
         ReplyKeyboardMarkup keyboard = new(
             new KeyboardButton[] {"Start"}
@@ -66,7 +70,7 @@ async Task HandleMessage(ITelegramBotClient botClient, Message message)
         {
             ResizeKeyboard = true
         };
-        await botClient.SendTextMessageAsync(message.Chat.Id, "Choose:", replyMarkup: keyboard);
+        await botClient.SendTextMessageAsync(message.Chat.Id,"Телеграм бот о фильмах", replyMarkup: keyboard);
         return;
     }
 
@@ -83,7 +87,18 @@ async Task HandleMessage(ITelegramBotClient botClient, Message message)
         await botClient.SendTextMessageAsync(message.Chat.Id, "Choose inline:", replyMarkup: keyboard);
         return;
     }
-
+    if (message.Text == "Start")
+    {
+        var movie = new Movie();
+        Random random = new Random();
+        int value = random.Next(1, 19);
+        using (ApplicationContext context = new ApplicationContext())
+        {
+            movie = context.Movies.AsNoTracking().FirstOrDefault(m => m.Id == value);
+        }
+        await GenerateMovie(movie,message.Chat.Id, botClient);
+        return;
+    }
     await botClient.SendTextMessageAsync(message.Chat.Id, $"You said:\n{message.Text}");
 }
 
@@ -91,50 +106,44 @@ async Task HandleCallbackQuery(ITelegramBotClient botClient, CallbackQuery callb
 {
     if (callbackQuery.Data.StartsWith("similar"))
     {
-        await botClient.SendPhotoAsync(
-                    chatId: callbackQuery.Message.Chat.Id,
-                    photo: "https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/4b27e219-a8a5-4d85-9874-57d6016e0837/600x900",
-                    $"Вы хотите купить?");
+        if (similarFilm == 0)
+        {
+            using (ApplicationContext context = new ApplicationContext())
+            {
+                movies = context.Movies.Where(m => EF.Functions.Like(m.Genre, $"%{genre}%")).AsNoTracking().ToList();
+            }
+            await GenerateMovie(movies[similarFilm], callbackQuery.Message.Chat.Id, botClient);
+            similarFilm++;
+        }
+        else if (similarFilm > 0){
+            if (similarFilm>=movies.Count)
+            {
+                await botClient.SendTextMessageAsync(callbackQuery.Message.Chat.Id, $"Похожих фильмов больше нет");
+                similarFilm = 0;
+                return;
+            }
+            await GenerateMovie(movies[similarFilm], callbackQuery.Message.Chat.Id, botClient);
+            similarFilm++;
+        }
+
+        //await botClient.SendPhotoAsync(
+        //            chatId: callbackQuery.Message.Chat.Id,
+        //            photo: "https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/4b27e219-a8a5-4d85-9874-57d6016e0837/600x900",
+        //            $"Вы хотите купить?");
         return;
     }
     if (callbackQuery.Data.StartsWith("next"))
     {
         var movie = new Movie();
         Random random = new Random();
-        int value = random.Next(0, 19);
-        using(ApplicationContext context = new ApplicationContext())
+        int value = random.Next(1, 19);
+        using (ApplicationContext context = new ApplicationContext())
         {
             movie = context.Movies.AsNoTracking().FirstOrDefault(m => m.Id == value);
         }
-        InlineKeyboardMarkup keyboard = new(new[]
-        {
-            new[]
-            {
-                InlineKeyboardButton.WithUrl(
-                text: "Ссылка на фильм",
-                url: $"{movie.Link}"
-                )
-            },
-            new[]
-            {
-                InlineKeyboardButton.WithCallbackData("Похожий фильм", "similar"),
-                InlineKeyboardButton.WithCallbackData("Следующий фильм", "next"),
-            }
-
-        });
-        
-        await botClient.SendPhotoAsync(
-                    chatId: callbackQuery.Message.Chat.Id,
-                    photo: $"{movie.LinkPoster}",
-                    $"{movie.Title}"+Environment.NewLine+
-                    $"Жанр: {movie.Genre}"+ Environment.NewLine+
-                    $"Год: {movie.Release}" + Environment.NewLine +
-                    $"Страна: {movie.Country}" + Environment.NewLine +
-                    $"Сюжет: {movie.Sutitle}",
-                    replyMarkup: keyboard,
-                    cancellationToken: cts.Token);
+        await GenerateMovie(movie,callbackQuery.Message.Chat.Id, botClient);
+        similarFilm = 0;
         return;
-
     }
     await botClient.SendTextMessageAsync(
         callbackQuery.Message.Chat.Id,
@@ -142,15 +151,10 @@ async Task HandleCallbackQuery(ITelegramBotClient botClient, CallbackQuery callb
     return;
 }
 
-async Task GenerateMovie(ITelegramBotClient botClient, CallbackQuery callbackQuery)
+async Task GenerateMovie(Movie movie, long id, ITelegramBotClient botClient)
 {
-    var movie = new Movie();
-    Random random = new Random();
-    int value = random.Next(0, 19);
-    using (ApplicationContext context = new ApplicationContext())
-    {
-        movie = context.Movies.AsNoTracking().FirstOrDefault(m => m.Id == value);
-    }
+    
+    genre = movie.Genre.Split(' ').First();
     InlineKeyboardMarkup keyboard = new(new[]
     {
             new[]
@@ -169,17 +173,57 @@ async Task GenerateMovie(ITelegramBotClient botClient, CallbackQuery callbackQue
         });
 
     await botClient.SendPhotoAsync(
-                chatId: callbackQuery.Message.Chat.Id,
+                chatId: id,
                 photo: $"{movie.LinkPoster}",
                 $"{movie.Title}" + Environment.NewLine +
                 $"Жанр: {movie.Genre}" + Environment.NewLine +
                 $"Год: {movie.Release}" + Environment.NewLine +
                 $"Страна: {movie.Country}" + Environment.NewLine +
-                $"Сюжет: {movie.Sutitle}",
+                $"Сюжет: {movie.Sutitle.Substring(0, Math.Min(500, movie.Sutitle.Length))}",
                 replyMarkup: keyboard,
                 cancellationToken: cts.Token);
     return;
 }
+
+//async Task GenerateMovie(long id,ITelegramBotClient botClient)
+//{
+//    var movie = new Movie();
+//    Random random = new Random();
+//    int value = random.Next(1, 19);
+//    using (ApplicationContext context = new ApplicationContext())
+//    {
+//        movie = context.Movies.AsNoTracking().FirstOrDefault(m => m.Id == value);
+//    }
+//    genre = movie.Genre.Split(' ').First();
+//    InlineKeyboardMarkup keyboard = new(new[]
+//    {
+//            new[]
+//            {
+//                InlineKeyboardButton.WithUrl(
+//                text: "Ссылка на фильм",
+//                url: $"{movie.Link}"
+//                )
+//            },
+//            new[]
+//            {
+//                InlineKeyboardButton.WithCallbackData("Похожий фильм", "similar"),
+//                InlineKeyboardButton.WithCallbackData("Следующий фильм", "next"),
+//            }
+
+//        });
+
+//    await botClient.SendPhotoAsync(
+//                chatId: id,
+//                photo: $"{movie.LinkPoster}",
+//                $"{movie.Title}" + Environment.NewLine +
+//                $"Жанр: {movie.Genre}" + Environment.NewLine +
+//                $"Год: {movie.Release}" + Environment.NewLine +
+//                $"Страна: {movie.Country}" + Environment.NewLine +
+//                $"Сюжет: {movie.Sutitle.Substring(0, Math.Min(500, movie.Sutitle.Length))}",
+//                replyMarkup: keyboard,
+//                cancellationToken: cts.Token);
+//    return;
+//}
 
 Task HandleErrorAsync(ITelegramBotClient client, Exception exception, CancellationToken cancellationToken)
 {
@@ -206,4 +250,39 @@ Task HandleErrorAsync(ITelegramBotClient client, Exception exception, Cancellati
 //    text: "A message with an inline keyboard markup",
 //    replyMarkup: keyboard,
 //    cancellationToken: cts.Token);
-                    //photo: "https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/4b27e219-a8a5-4d85-9874-57d6016e0837/600x900",
+//photo: "https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/4b27e219-a8a5-4d85-9874-57d6016e0837/600x900",
+//var movie = new Movie();
+//Random random = new Random();
+//int value = random.Next(1, 19);
+//using(ApplicationContext context = new ApplicationContext())
+//{
+//    movie = context.Movies.AsNoTracking().FirstOrDefault(m => m.Id == value);
+//}
+//InlineKeyboardMarkup keyboard = new(new[]
+//{
+//    new[]
+//    {
+//        InlineKeyboardButton.WithUrl(
+//        text: "Ссылка на фильм",
+//        url: $"{movie.Link}"
+//        )
+//    },
+//    new[]
+//    {
+//        InlineKeyboardButton.WithCallbackData("Похожий фильм", "similar"),
+//        InlineKeyboardButton.WithCallbackData("Следующий фильм", "next"),
+//    }
+
+//});
+
+//await botClient.SendPhotoAsync(
+//            chatId: callbackQuery.Message.Chat.Id,
+//            photo: $"{movie.LinkPoster}",
+//            $"{movie.Title}"+Environment.NewLine+
+//            $"Жанр: {movie.Genre}"+ Environment.NewLine+
+//            $"Год: {movie.Release}" + Environment.NewLine +
+//            $"Страна: {movie.Country}" + Environment.NewLine +
+//            $"Сюжет: {movie.Sutitle.Substring(0, Math.Min(500, movie.Sutitle.Length))}",
+//            replyMarkup: keyboard,
+//            cancellationToken: cts.Token);
+//return;

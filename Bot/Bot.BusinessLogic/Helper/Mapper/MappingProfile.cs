@@ -1,5 +1,4 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using Bot.Common.Dto;
 using Bot.Models.Models;
 

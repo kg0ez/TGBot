@@ -1,5 +1,4 @@
-﻿using System;
-using Bot.Models.Models;
+﻿using Bot.Models.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bot.Models.Data

@@ -1,5 +1,4 @@
-﻿using System;
-namespace Bot.Common.Dto
+﻿namespace Bot.Common.Dto
 {
 	public class MovieDto
 	{

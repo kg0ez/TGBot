@@ -1,5 +1,4 @@
-﻿using System;
-using Bot.BusinessLogic.Services.Interfaces;
+﻿using Bot.BusinessLogic.Services.Interfaces;
 using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 

@@ -1,5 +1,4 @@
-﻿using System;
-namespace Bot.Models.Models
+﻿namespace Bot.Models.Models
 {
 	public class Movie
 	{

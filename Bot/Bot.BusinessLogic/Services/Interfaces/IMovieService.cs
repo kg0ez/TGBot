@@ -1,14 +1,11 @@
-﻿using System;
-using Bot.Models.Models;
-using Telegram.Bot;
-using Telegram.Bot.Types.ReplyMarkups;
+﻿using Bot.Common.Dto;
 
 namespace Bot.BusinessLogic.Services.Interfaces
 {
 	public interface IMovieService
 	{
-		Movie ChoiceMovie();
-		IEnumerable<Movie> GetSimilar(string genre);
+		MovieDto ChoiceMovie();
+		IEnumerable<MovieDto> GetSimilar(string genre);
 	}
 }
 

@@ -1,15 +1,12 @@
 ﻿using Bot.BusinessLogic.Services.Implementations;
 using Bot.BusinessLogic.Services.Interfaces;
-using Bot.Models.Models;
+using Bot.Common.Dto;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Telegram.Bot;
-using Telegram.Bot.Exceptions;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;
-
 
 var serviceProvider = new ServiceCollection()
             .AddLogging()
@@ -18,18 +15,16 @@ var serviceProvider = new ServiceCollection()
             .AddSingleton<IMovieService, MovieService>()
             .BuildServiceProvider();
 
-var logger = serviceProvider.GetService<ILoggerFactory>()
-    .CreateLogger<Program>();
+var movieService = serviceProvider.GetService<IMovieService>();
+var errorServices = serviceProvider.GetService<IErrorService>();
+var buttonServices = serviceProvider.GetService<IButtonService>();
+
 
 var botClient = new TelegramBotClient("5346358438:AAHfncUZIXOuvKBz8YsDvypbzoCKuDR6s7k");
 
 string genre = string.Empty;
 int similarFilm = 0;
-List<Movie> movies = new List<Movie>();
-
-IMovieService movieService = new MovieService();
-IErrorService errorServices = new ErrorService();
-IButtonService buttonServices = new ButtonService();
+List<MovieDto> movies = new List<MovieDto>();
 
 using var cts = new CancellationTokenSource();
 
@@ -118,7 +113,7 @@ async Task HandleCallbackQuery(ITelegramBotClient botClient, CallbackQuery callb
     return;
 }
 
-async Task GenerateMovie(Movie movie, long id, ITelegramBotClient botClient)
+async Task GenerateMovie(MovieDto movie, long id, ITelegramBotClient botClient)
 {
     genre = movie.Genre.Split(' ').First();
 

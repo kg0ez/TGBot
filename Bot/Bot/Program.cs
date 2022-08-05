@@ -1,4 +1,6 @@
-﻿using Bot.BusinessLogic.Services.Implementations;
+﻿using AutoMapper;
+using Bot.BusinessLogic.Helper.Mapper;
+using Bot.BusinessLogic.Services.Implementations;
 using Bot.BusinessLogic.Services.Interfaces;
 using Bot.Common.Dto;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,11 +16,18 @@ var serviceProvider = new ServiceCollection()
             .AddSingleton<IErrorService, ErrorService>()
             .AddSingleton<IMovieService, MovieService>()
             .BuildServiceProvider();
+var mapperConfiguration = new MapperConfiguration(x =>
+{
+    x.AddProfile<MappingProfile>();
+});
+mapperConfiguration.AssertConfigurationIsValid();
+IMapper mapper = mapperConfiguration.CreateMapper();
 
 var movieService = serviceProvider.GetService<IMovieService>();
 var errorServices = serviceProvider.GetService<IErrorService>();
 var buttonServices = serviceProvider.GetService<IButtonService>();
 
+movieService.Mapper = mapper;
 
 var botClient = new TelegramBotClient("5346358438:AAHfncUZIXOuvKBz8YsDvypbzoCKuDR6s7k");
 

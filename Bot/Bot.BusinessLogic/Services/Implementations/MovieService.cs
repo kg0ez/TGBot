@@ -10,17 +10,9 @@ namespace Bot.BusinessLogic.Services.Implementations
 {
 	public class MovieService: IMovieService
     {
-        private readonly IMapper _mapper;
-        public MovieService()
-        {
-            var mapperConfiguration = new MapperConfiguration(x =>
-            {
-                x.AddProfile<MappingProfile>();
-            });
-            mapperConfiguration.AssertConfigurationIsValid();
-            _mapper = mapperConfiguration.CreateMapper();
-        }
-		public MovieDto ChoiceMovie()
+        public IMapper Mapper { get; set; }
+
+        public MovieDto ChoiceMovie()
         {
             var movie = new Movie();
             Random random = new Random();
@@ -29,7 +21,7 @@ namespace Bot.BusinessLogic.Services.Implementations
                 int value = random.Next(1, context.Movies.AsNoTracking().ToList().Count-1);
                 movie = context.Movies.AsNoTracking().FirstOrDefault(m => m.Id == value);
             }
-            MovieDto movieDto = _mapper.Map<MovieDto>(movie);
+            MovieDto movieDto = Mapper.Map<MovieDto>(movie);
             return movieDto;
         }
 
@@ -40,7 +32,7 @@ namespace Bot.BusinessLogic.Services.Implementations
             {
                 movies = context.Movies.Where(m => EF.Functions.Like(m.Genre, $"%{genre}%")).AsNoTracking().ToList();
             }
-            List<MovieDto> moviesDto = _mapper.Map<List<MovieDto>>(movies);
+            List<MovieDto> moviesDto = Mapper.Map<List<MovieDto>>(movies);
             return moviesDto;
         }
     }

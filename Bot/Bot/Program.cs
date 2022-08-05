@@ -1,12 +1,25 @@
 ﻿using Bot.BusinessLogic.Services.Implementations;
 using Bot.BusinessLogic.Services.Interfaces;
 using Bot.Models.Models;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;
+
+
+var serviceProvider = new ServiceCollection()
+            .AddLogging()
+            .AddSingleton<IButtonService, ButtonService>()
+            .AddSingleton<IErrorService, ErrorService>()
+            .AddSingleton<IMovieService, MovieService>()
+            .BuildServiceProvider();
+
+var logger = serviceProvider.GetService<ILoggerFactory>()
+    .CreateLogger<Program>();
 
 var botClient = new TelegramBotClient("5346358438:AAHfncUZIXOuvKBz8YsDvypbzoCKuDR6s7k");
 
@@ -15,8 +28,8 @@ int similarFilm = 0;
 List<Movie> movies = new List<Movie>();
 
 IMovieService movieService = new MovieService();
-IErrorServices errorServices = new ErrorServices();
-IButtonServices buttonServices = new ButtonServices();
+IErrorService errorServices = new ErrorService();
+IButtonService buttonServices = new ButtonService();
 
 using var cts = new CancellationTokenSource();
 
@@ -32,14 +45,14 @@ botClient.StartReceiving(
     cancellationToken: cts.Token);
 
 var me = await botClient.GetMeAsync();
-Console.WriteLine(me.Username +" is working");
+Console.WriteLine(me.Username + " is working");
 Console.ReadLine();
 
 cts.Cancel();
 
 async Task HandleUpdatesAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
 {
-    
+
     if (update.Type == UpdateType.Message && update?.Message?.Text != null)
     {
         await HandleMessage(botClient, update.Message);
@@ -58,14 +71,14 @@ async Task HandleMessage(ITelegramBotClient botClient, Message message)
     if (message.Text == "/start")
     {
         ReplyKeyboardMarkup keyboard = buttonServices.MenuButton();
-        await botClient.SendTextMessageAsync(message.Chat.Id,"Телеграм бот о фильмах", replyMarkup: keyboard);
+        await botClient.SendTextMessageAsync(message.Chat.Id, "Телеграм бот о фильмах", replyMarkup: keyboard);
         return;
     }
 
     if (message.Text == "Начать")
     {
         var movie = movieService.ChoiceMovie();
-        await GenerateMovie(movie,message.Chat.Id, botClient);
+        await GenerateMovie(movie, message.Chat.Id, botClient);
         return;
     }
     await botClient.SendTextMessageAsync(message.Chat.Id, $"You said:\n{message.Text}");
@@ -95,7 +108,7 @@ async Task HandleCallbackQuery(ITelegramBotClient botClient, CallbackQuery callb
     if (callbackQuery.Data.StartsWith("next"))
     {
         var movie = movieService.ChoiceMovie();
-        await GenerateMovie(movie,callbackQuery.Message.Chat.Id, botClient);
+        await GenerateMovie(movie, callbackQuery.Message.Chat.Id, botClient);
         similarFilm = 0;
         return;
     }
@@ -108,7 +121,7 @@ async Task HandleCallbackQuery(ITelegramBotClient botClient, CallbackQuery callb
 async Task GenerateMovie(Movie movie, long id, ITelegramBotClient botClient)
 {
     genre = movie.Genre.Split(' ').First();
-    
+
     InlineKeyboardMarkup keyboard = buttonServices.Buttons(movie.Link);
     await botClient.SendPhotoAsync(
                 chatId: id,

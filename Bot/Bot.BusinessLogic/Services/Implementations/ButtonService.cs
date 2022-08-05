@@ -4,7 +4,7 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 namespace Bot.BusinessLogic.Services.Implementations
 {
-	public class ButtonServices: IButtonServices
+	public class ButtonService: IButtonService
 	{
         public InlineKeyboardMarkup Buttons(string movie)
         {
@@ -19,8 +19,8 @@ namespace Bot.BusinessLogic.Services.Implementations
                 },
                 new[]
                 {
-                    InlineKeyboardButton.WithCallbackData("Похожий фильм", "similar"),
                     InlineKeyboardButton.WithCallbackData("Далее", "next"),
+                    InlineKeyboardButton.WithCallbackData("Похожий фильм", "similar"),
                 }
 
             });

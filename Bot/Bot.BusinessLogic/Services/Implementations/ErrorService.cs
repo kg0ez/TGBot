@@ -5,7 +5,7 @@ using Telegram.Bot.Exceptions;
 
 namespace Bot.BusinessLogic.Services.Implementations
 {
-	public class ErrorServices: IErrorServices
+	public class ErrorService: IErrorService
 	{
         public Task HandleError(ITelegramBotClient client, Exception exception, CancellationToken cancellationToken)
         {

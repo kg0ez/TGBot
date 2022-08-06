@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Bot.BusinessLogic.Helper.Mapper;
 using Bot.BusinessLogic.Services.Interfaces;
 using Bot.Common.Dto;
 using Bot.Models.Data;

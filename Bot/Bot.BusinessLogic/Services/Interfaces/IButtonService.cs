@@ -1,5 +1,4 @@
-﻿using System;
-using Telegram.Bot.Types.ReplyMarkups;
+﻿using Telegram.Bot.Types.ReplyMarkups;
 
 namespace Bot.BusinessLogic.Services.Interfaces
 {

@@ -7,6 +7,7 @@ using HtmlAgilityPack;
 HtmlWeb web = new HtmlWeb();
 web.OverrideEncoding = Encoding.UTF8;
 HtmlDocument document = web.Load("https://www.ivi.ru/collections/best-movies/page2");
+
 ArrayList listMovies = new ArrayList();
 ArrayList listPoster = new ArrayList();
 
@@ -19,9 +20,6 @@ foreach (HtmlNode node in document.DocumentNode.SelectNodes("//div[contains(@cla
 {
     listPoster.Add(node.GetAttributeValue("src", null));
 }
-
-Console.WriteLine(listPoster.Count);
-Console.WriteLine(listMovies.Count);
 
 using (ApplicationContext context = new ApplicationContext())
 {
@@ -46,6 +44,7 @@ using (ApplicationContext context = new ApplicationContext())
             {
                 common.Add(link.InnerText);
             }
+
             string genre = string.Empty;
             for (int j = 0; j < common.Count / 2; j++)
             {

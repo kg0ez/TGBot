@@ -1,21 +1,26 @@
 ﻿<Properties StartupConfiguration="{BDCC07A8-A200-4401-81DA-F62DA16BD023}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Bot.BusinessLogic/Services/Implementations/MovieService.cs">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.Bot PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Movies.ivi.Parser/Program.cs">
     <Files>
-      <File FileName="Bot/Program.cs" Line="31" Column="1" />
-      <File FileName="Bot.Models/Data/ApplicationContext.cs" Line="1" Column="14" />
-      <File FileName="Bot.Models/Models/Movie.cs" Line="1" Column="14" />
-      <File FileName="../../../../../usr/local/share/dotnet/sdk/6.0.301/Microsoft.Common.CurrentVersion.targets" Line="4485" Column="12" />
-      <File FileName="Bot.BusinessLogic/Helper/Mapper/MappingProfile.cs" Line="16" Column="1" />
-      <File FileName="Bot.Common/Dto/MovieDto.cs" Line="1" Column="14" />
-      <File FileName="Bot.BusinessLogic/Services/Implementations/MovieService.cs" Line="13" Column="1" />
-      <File FileName="Bot.BusinessLogic/Services/Interfaces/IMovieService.cs" Line="8" Column="11" />
-      <File FileName="Movies.ivi.Parser/Program.cs" Line="20" Column="31" />
-      <File FileName="Bot/Controllers/BotController.cs" Line="2" Column="1" />
-      <File FileName="Bot/.gitignore" Line="13" Column="13" />
-      <File FileName="Bot.BusinessLogic/Services/Implementations/ButtonService.cs" Line="1" Column="14" />
-      <File FileName="Bot.BusinessLogic/Services/Implementations/ErrorService.cs" Line="1" Column="14" />
+      <File FileName="Bot/Program.cs" Line="13" Column="1" />
+      <File FileName="Bot/.gitignore" Line="1" Column="1" />
       <File FileName="Bot.BusinessLogic/Services/Interfaces/IErrorService.cs" Line="1" Column="1" />
+      <File FileName="Bot.BusinessLogic/Services/Implementations/ErrorService.cs" Line="1" Column="1" />
+      <File FileName="Bot/Controllers/BotController.cs" Line="103" Column="45" />
+      <File FileName="Bot.BusinessLogic/Helper/Mapper/MappingProfile.cs" Line="1" Column="1" />
+      <File FileName="Movies.ivi.Parser/Program.cs" Line="47" Column="1" />
+      <File FileName="Bot.Models/Models/Movie.cs" Line="1" Column="1" />
+      <File FileName="Bot.Models/Data/ApplicationContext.cs" Line="1" Column="1" />
+      <File FileName="Bot.Common/Dto/MovieDto.cs" Line="1" Column="1" />
+      <File FileName="Bot.BusinessLogic/Services/Interfaces/IMovieService.cs" Line="1" Column="1" />
       <File FileName="Bot.BusinessLogic/Services/Interfaces/IButtonService.cs" Line="1" Column="1" />
+      <File FileName="Bot.BusinessLogic/Services/Implementations/MovieService.cs" Line="1" Column="1" />
+      <File FileName="Bot.BusinessLogic/Services/Implementations/ButtonService.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -27,9 +32,7 @@
                   <Node name="Mapper" expanded="True" />
                 </Node>
                 <Node name="Services" expanded="True">
-                  <Node name="Implementations" expanded="True">
-                    <Node name="MovieService.cs" selected="True" />
-                  </Node>
+                  <Node name="Implementations" expanded="True" />
                   <Node name="Interfaces" expanded="True" />
                 </Node>
               </Node>
@@ -45,7 +48,9 @@
                 <Node name="Models" expanded="True" />
               </Node>
             </Node>
-            <Node name="Parser" expanded="True" />
+            <Node name="Parser" expanded="True">
+              <Node name="Movies.ivi.Parser" expanded="True" />
+            </Node>
             <Node name="Bot" expanded="True">
               <Node name="Controllers" expanded="True" />
             </Node>
@@ -57,12 +62,6 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.ItemProperties.Bot PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.Parser.Movies.ivi.Parser FirstBuild="True" />
 </Properties>

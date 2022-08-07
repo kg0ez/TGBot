@@ -8,11 +8,11 @@ namespace Bot.Models.Data
 		public ApplicationContext()
 		{
 			Database.EnsureCreated();
-		}
+        }
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseSqlServer("Server=localhost;Database=TgBot;User Id=sa;Password=Valuetech@123;");
+			optionsBuilder.UseSqlServer("Server=localhost;Database=Bot;User Id=sa;Password=Valuetech@123;");
 		}
 
 		public DbSet<Movie> Movies { get; set; } = null!;

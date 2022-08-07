@@ -95,10 +95,11 @@ namespace Bot.Controllers
                         chatId: id,
                         photo: $"{movie.LinkPoster}",
                         $"{movie.Title.Replace("смотреть онлайн", "")}" + Environment.NewLine +
+                        $"Рейтинг: {movie.Rating}" + Environment.NewLine +
                         $"Жанр: {movie.Genre}" + Environment.NewLine +
                         $"Год: {movie.Release}" + Environment.NewLine +
                         $"Страна: {movie.Country}" + Environment.NewLine +
-                        $"Сюжет: {movie.Sutitle.Substring(0, Math.Min(500, movie.Sutitle.Length))}",
+                        $"Сюжет: {movie.Sutitle.Replace("\n", " ").Substring(0, Math.Min(600, movie.Sutitle.Length))}...",
                         replyMarkup: keyboard);
             _genre = movie.Genre.Split(' ').First();
             return;

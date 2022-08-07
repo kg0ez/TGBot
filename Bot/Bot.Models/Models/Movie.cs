@@ -10,6 +10,7 @@
 		public string Link { get; set; }
 		public string LinkPoster { get; set; }
 		public string Country { get; set; }
+		public string Rating { get; set; }
 	}
 }
 

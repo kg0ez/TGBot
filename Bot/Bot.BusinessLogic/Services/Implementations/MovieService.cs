@@ -14,10 +14,11 @@ namespace Bot.BusinessLogic.Services.Implementations
         public MovieDto ChoiceMovie()
         {
             var movie = new Movie();
-            Random random = new Random();
+            
             using (ApplicationContext context = new ApplicationContext())
             {
-                int value = random.Next(1, context.Movies.AsNoTracking().ToList().Count-1);
+                int value = GenerateNumber(context.Movies.AsNoTracking().ToList().Count - 1);
+                
                 movie = context.Movies.AsNoTracking().FirstOrDefault(m => m.Id == value);
             }
             MovieDto movieDto = Mapper.Map<MovieDto>(movie);
@@ -33,6 +34,34 @@ namespace Bot.BusinessLogic.Services.Implementations
             }
             List<MovieDto> moviesDto = Mapper.Map<List<MovieDto>>(movies);
             return moviesDto;
+        }
+        private List<int> MovieNumbers { get; set; } = new List<int>();
+
+        private int GenerateNumber(int length)
+        {
+            Random random = new Random();
+            int value;
+            if (MovieNumbers.Count > 15)
+                MovieNumbers = new List<int>();
+            while (true)
+            {
+                bool content = false;
+                value = random.Next(1, length);
+                foreach (var number in MovieNumbers)
+                {
+                    if (number == value)
+                    {
+                        content = true;
+                        break;
+                    }
+                }
+                if (!content)
+                {
+                    MovieNumbers.Add(value);
+                    break;
+                }
+            }
+            return value;
         }
     }
 }

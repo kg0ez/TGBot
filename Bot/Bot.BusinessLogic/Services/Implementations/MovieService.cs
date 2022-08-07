@@ -41,7 +41,7 @@ namespace Bot.BusinessLogic.Services.Implementations
         {
             Random random = new Random();
             int value;
-            if (MovieNumbers.Count > 15)
+            if (MovieNumbers.Count > 30)
                 MovieNumbers = new List<int>();
             while (true)
             {

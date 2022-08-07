@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gsxXySLnfwbJU4ZbvzY/4Cg4Oz5w1kt9pLg8sCr/YaJhKpMObh5PuH/0HB+Xsq1YXyEOw4nxchtYistNqgHtzQ==",
+  "dgSpecHash": "Er8n/QW9rp48cM8z2E/DtWvKUpgxDhjPh/xB7R+l/Qib3aDhk/mvj6fwdx5bQxmg6pNpgteA76H6ApqiDAiJLA==",
   "success": true,
-  "projectFilePath": "/Users/kirill/Desktop/TGBot/Bot/Movies.ivi.Parser/Movies.ivi.Parser.csproj",
+  "projectFilePath": "/Users/kirill/Desktop/TGBot/Bot/Movies.ivi.Parser/Movies.Parser.csproj",
   "expectedPackageFiles": [
     "/Users/kirill/.nuget/packages/htmlagilitypack/1.11.43/htmlagilitypack.1.11.43.nupkg.sha512",
     "/Users/kirill/.nuget/packages/microsoft.csharp/4.5.0/microsoft.csharp.4.5.0.nupkg.sha512",

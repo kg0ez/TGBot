@@ -1852,9 +1852,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/kirill/Desktop/TGBot/Bot/Movies.ivi.Parser/Movies.ivi.Parser.csproj",
-      "projectName": "Movies.ivi.Parser",
-      "projectPath": "/Users/kirill/Desktop/TGBot/Bot/Movies.ivi.Parser/Movies.ivi.Parser.csproj",
+      "projectUniqueName": "/Users/kirill/Desktop/TGBot/Bot/Movies.ivi.Parser/Movies.Parser.csproj",
+      "projectName": "Movies.Parser",
+      "projectPath": "/Users/kirill/Desktop/TGBot/Bot/Movies.ivi.Parser/Movies.Parser.csproj",
       "packagesPath": "/Users/kirill/.nuget/packages/",
       "outputPath": "/Users/kirill/Desktop/TGBot/Bot/Movies.ivi.Parser/obj/",
       "projectStyle": "PackageReference",

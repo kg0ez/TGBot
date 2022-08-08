@@ -1,10 +1,8 @@
 ﻿using Bot.BusinessLogic.Helper;
 using Bot.BusinessLogic.Services.Interfaces;
-using Bot.Common.Dto;
 using Bot.Services.Interfaces;
 using Telegram.Bot;
 using Telegram.Bot.Types;
-using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;
 namespace Bot.Helper.Handler
 {
@@ -118,21 +116,6 @@ namespace Bot.Helper.Handler
 
             await botClient.SendTextMessageAsync(message.Chat.Id, $"You said:\n{message.Text}");
         }
-        //public async Task ShowMovie(MovieDto movie, long id, ITelegramBotClient botClient, InlineKeyboardMarkup keyboard)
-        //{
-        //    await botClient.SendPhotoAsync(
-        //                chatId: id,
-        //                photo: $"{movie.LinkPoster}",
-        //                $"{movie.Title.Replace("смотреть онлайн", "")}" + Environment.NewLine +
-        //                $"Рейтинг: {movie.Rating}" + Environment.NewLine +
-        //                $"Жанр: {movie.Genre}" + Environment.NewLine +
-        //                $"Год: {movie.Release}" + Environment.NewLine +
-        //                $"Страна: {movie.Country}" + Environment.NewLine +
-        //                $"Сюжет: {movie.Sutitle.Replace("\n", " ").Substring(0, Math.Min(600, movie.Sutitle.Length))}...",
-        //                replyMarkup: keyboard);
-        //    _genre = movie.Genre.Split(' ').First();
-        //    return;
-        //}
     }
 }
 

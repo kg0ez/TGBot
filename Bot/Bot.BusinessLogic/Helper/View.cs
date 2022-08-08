@@ -1,5 +1,4 @@
-﻿using System;
-using Bot.Common.Dto;
+﻿using Bot.Common.Dto;
 using Telegram.Bot;
 using Telegram.Bot.Types.ReplyMarkups;
 

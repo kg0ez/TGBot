@@ -1,6 +1,4 @@
-﻿using System;
-using Bot.BusinessLogic.Services.Interfaces;
-using Bot.Services.Interfaces;
+﻿using Bot.Services.Interfaces;
 using Telegram.Bot.Types.ReplyMarkups;
 
 namespace Bot.Services.Implementations
@@ -76,7 +74,7 @@ namespace Bot.Services.Implementations
             "Музыка","Детектив","Мелодрама","Фантастика","Триллер","Военный","Вестерн"};
 
         public List<string> CountryList { get; } = new List<string> {
-            "/Австралия", "Великобритания", "Франция", "Мексика", "США", "Южная Корея",
+            "Австралия", "Великобритания", "Франция", "Мексика", "США", "Южная Корея",
             "Гонконг", "Китай", "Марокко", "Аргентина", "Испания", "Уругвай",
             "Беларусь", "Великобритания", "Ирландия","Италия", "Люксембург", "Канада",
             "Македония", "Болгария", "Бразилия", "Германия", "Дания", "Япония",

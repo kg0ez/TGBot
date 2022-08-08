@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "Ou8EURt1NRISUvwdVKaUgS1AO70tfXwugEvD6Lcs2OS4VaJvf5grTetNXhNymVwxiSewX7+t3sPefsDfBaTqQg==",
+  "success": true,
+  "projectFilePath": "/Users/kirill/Desktop/TGBot/Bot/Bot.BusinessLogic/Bot.BusinessLogic.Telegram/Bot.BusinessLogic.Telegram.csproj",
+  "expectedPackageFiles": [
+    "/Users/kirill/.nuget/packages/newtonsoft.json/12.0.2/newtonsoft.json.12.0.2.nupkg.sha512",
+    "/Users/kirill/.nuget/packages/telegram.bot/18.0.0/telegram.bot.18.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

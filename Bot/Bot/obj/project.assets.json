@@ -647,6 +647,19 @@
           "bin/placeholder/Bot.BusinessLogic.dll": {}
         }
       },
+      "Bot.BusinessLogic.Telegram/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Telegram.Bot": "18.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Bot.BusinessLogic.Telegram.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Bot.BusinessLogic.Telegram.dll": {}
+        }
+      },
       "Bot.Common/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -1905,6 +1918,11 @@
       "path": "../Bot.BusinessLogic/Bot.BusinessLogic.csproj",
       "msbuildProject": "../Bot.BusinessLogic/Bot.BusinessLogic.csproj"
     },
+    "Bot.BusinessLogic.Telegram/1.0.0": {
+      "type": "project",
+      "path": "../Bot.BusinessLogic/Bot.BusinessLogic.Telegram/Bot.BusinessLogic.Telegram.csproj",
+      "msbuildProject": "../Bot.BusinessLogic/Bot.BusinessLogic.Telegram/Bot.BusinessLogic.Telegram.csproj"
+    },
     "Bot.Common/1.0.0": {
       "type": "project",
       "path": "../Bot.Common/Bot.Common.csproj",
@@ -1919,7 +1937,7 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "Bot.BusinessLogic >= 1.0.0",
-      "Bot.Models >= 1.0.0",
+      "Bot.BusinessLogic.Telegram >= 1.0.0",
       "Telegram.Bot >= 18.0.0"
     ]
   },
@@ -1951,8 +1969,8 @@
             "/Users/kirill/Desktop/TGBot/Bot/Bot.BusinessLogic/Bot.BusinessLogic.csproj": {
               "projectPath": "/Users/kirill/Desktop/TGBot/Bot/Bot.BusinessLogic/Bot.BusinessLogic.csproj"
             },
-            "/Users/kirill/Desktop/TGBot/Bot/Bot.Models/Bot.Models.csproj": {
-              "projectPath": "/Users/kirill/Desktop/TGBot/Bot/Bot.Models/Bot.Models.csproj"
+            "/Users/kirill/Desktop/TGBot/Bot/Bot.BusinessLogic/Bot.BusinessLogic.Telegram/Bot.BusinessLogic.Telegram.csproj": {
+              "projectPath": "/Users/kirill/Desktop/TGBot/Bot/Bot.BusinessLogic/Bot.BusinessLogic.Telegram/Bot.BusinessLogic.Telegram.csproj"
             }
           }
         }

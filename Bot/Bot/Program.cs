@@ -3,14 +3,17 @@ using Bot.BusinessLogic.Helper.Mapper;
 using Bot.BusinessLogic.Services.Implementations;
 using Bot.BusinessLogic.Services.Interfaces;
 using Bot.Controllers;
+using Bot.Services.Interfaces;
+using Bot.Services.Implementations;
 using Microsoft.Extensions.DependencyInjection;
 using Telegram.Bot;
 using Telegram.Bot.Polling;
 
+
 var serviceProvider = new ServiceCollection()
             .AddLogging()
             .AddSingleton<IButtonService, ButtonService>()
-            .AddSingleton<IErrorService, ErrorService>()
+            .AddSingleton<IErrorService,ErrorService>()
             .AddSingleton<IMovieService, MovieService>()
             .BuildServiceProvider();
 var mapperConfiguration = new MapperConfiguration(x =>

@@ -43,6 +43,7 @@ namespace Bot.Helper.Handler
                     action = "genre";
                 else if (_release)
                     action = "release";
+                _genre = _country = _release = false;
                 var movie = _movieService.ChoiceMovie(message.Text, action);
                 if (movie == null)
                     return;

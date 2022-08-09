@@ -1,19 +1,16 @@
 ﻿<Properties StartupConfiguration="{BDCC07A8-A200-4401-81DA-F62DA16BD023}|Default">
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Bot/Controllers/BotController.cs">
+  <MonoDevelop.Ide.ItemProperties.Bot PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Bot/Program.cs">
     <Files>
       <File FileName="Bot/Services/Implementations/ButtonService.cs" Line="59" Column="36" />
-      <File FileName="Bot/Helper/Handler/MessageHendler.cs" Line="74" Column="39" />
+      <File FileName="Bot/Helper/Handler/MessageHendler.cs" Line="19" Column="10" />
       <File FileName="Bot/Services/Interfaces/IButtonService.cs" Line="18" Column="1" />
       <File FileName="Bot.Models/Models/Movie.cs" Line="1" Column="1" />
       <File FileName="Bot/Controllers/BotController.cs" Line="26" Column="48" />
       <File FileName="Bot.BusinessLogic/Services/Implementations/MovieService.cs" Line="66" Column="1" />
       <File FileName="Bot.BusinessLogic/Services/Interfaces/IContentService.cs" Line="7" Column="27" />
       <File FileName="Bot.BusinessLogic/Services/Implementations/ContentService.cs" Line="25" Column="6" />
-      <File FileName="Bot/Program.cs" Line="33" Column="47" />
+      <File FileName="Bot/Program.cs" Line="36" Column="86" />
       <File FileName="Bot.BusinessLogic/Services/Interfaces/IMovieService.cs" Line="9" Column="3" />
       <File FileName="Bot.BusinessLogic/Helper/Mapper/MappingProfile.cs" Line="1" Column="1" />
       <File FileName="Bot.BusinessLogic/Services/Implementations/ErrorService.cs" Line="1" Column="1" />
@@ -57,7 +54,10 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.Bot PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

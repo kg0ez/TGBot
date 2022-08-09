@@ -33,7 +33,7 @@ movieService.Mapper = mapper;
 movieService.ContentService = contentServices;
 var botController = new BotController(movieService, buttonServices,contentServices);
 
-var botClient = new TelegramBotClient("5346358438:AAHfncUZIXOuvKBz8YsDvypbzoCKuDR6s7k");
+var botClient = new TelegramBotClient("5575229159:AAFpnpbKTZGyiBQ8k7XQ_fu1-GYbvdhmh7E");
 
 using var cts = new CancellationTokenSource();
 

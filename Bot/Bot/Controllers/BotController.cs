@@ -13,18 +13,20 @@ namespace Bot.Controllers
     {
         private readonly IMovieService movieService;
         private readonly IButtonService buttonService;
+        private readonly IContentService contentService;
 
         private int _numberFilm { get; set; }
         private List<MovieDto> _movies { get; set; }
 
         private MessageHendler messageHendler;
 
-        public BotController(IMovieService movieService, IButtonService buttonService)
+        public BotController(IMovieService movieService, IButtonService buttonService , IContentService contentService)
         {
             this.movieService = movieService;
             this.buttonService = buttonService;
+            this.contentService = contentService;
             _movies = new List<MovieDto>();
-            messageHendler = new MessageHendler(movieService, buttonService);
+            messageHendler = new MessageHendler(movieService, buttonService, contentService);
         }
         public async Task HandleUpdatesAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {

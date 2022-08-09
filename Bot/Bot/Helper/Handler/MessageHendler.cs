@@ -10,15 +10,17 @@ namespace Bot.Helper.Handler
 	{
         private readonly IMovieService movieService;
         private readonly IButtonService buttonService;
+        private readonly IContentService contentService;
 
         private bool genre { get; set; }
         private bool release { get; set; }
         private bool country { get; set; }
 
-        public MessageHendler(IMovieService movieService, IButtonService buttonService)
+        public MessageHendler(IMovieService movieService, IButtonService buttonService,IContentService contentService)
         {
             this.movieService = movieService;
             this.buttonService = buttonService;
+            this.contentService = contentService;
         }
 
         public async Task HandleMessage(ITelegramBotClient botClient, Message message)
@@ -93,8 +95,8 @@ namespace Bot.Helper.Handler
                 ReplyKeyboardMarkup keyboard = buttonService.MenuButton(new KeyboardButton[] { "Назад" });
                 await botClient.SendTextMessageAsync(message.Chat.Id, "Вернуться", replyMarkup: keyboard);
                 string country = string.Empty;
-                for (int i = 0; i < buttonService.CountryList.Count - 1; i += 2)
-                    country += "• " + $"/{ buttonService.CountryList[i]}" +" "+"/ewrwe"+"    •" + buttonService.CountryList[i + 1] + Environment.NewLine;
+                for (int i = 0; i < contentService.CountryList.Count - 1; i += 2)
+                    country += "• " + $"/{ contentService.CountryList[i]}" +" "+"/ewrwe"+"    •" + contentService.CountryList[i + 1] + Environment.NewLine;
 
                 await botClient.SendTextMessageAsync(message.Chat.Id, country);
                 this.country = true;
@@ -103,18 +105,21 @@ namespace Bot.Helper.Handler
             if (message.Text == "Жанр")
             {
                 ReplyKeyboardMarkup keyboard = buttonService.MenuButton(new KeyboardButton[] { "Назад" });
-                await botClient.SendTextMessageAsync(message.Chat.Id, "Вернуться", replyMarkup: keyboard);
+                //await botClient.SendTextMessageAsync(message.Chat.Id, "Вернуться", replyMarkup: keyboard);
                 string genre = string.Empty;
-                foreach (var item in buttonService.GenreList)
-                    genre += "•"+" " +"/"+ item + Environment.NewLine;
-                await botClient.SendTextMessageAsync(message.Chat.Id, genre);
+                //foreach (var item in buttonService.GenreList)
+                //    genre += "• " + item + Environment.NewLine;
+                for (int i = 0; i < contentService.GenreList.Count; i++)
+                    genre += "• " + $"<i>{contentService.GenreList[i]}</i>" + $" (/gn{i})" +Environment.NewLine;
+
+                await botClient.SendTextMessageAsync(message.Chat.Id, "<b>Выберите жанр используя тег:</b>"+Environment.NewLine+ genre,parseMode:Telegram.Bot.Types.Enums.ParseMode.Html, replyMarkup: keyboard);
                 this.genre = true;
                 return;
             }
             if (message.Text == "Год")
             {
                 ReplyKeyboardMarkup keyboard = buttonService.MenuButton(new KeyboardButton[] { "Назад" });
-                await botClient.SendTextMessageAsync(message.Chat.Id, "<b>Выберите диапазон используя тег:</b>"+Environment.NewLine+buttonService.Release, replyMarkup: keyboard,parseMode:Telegram.Bot.Types.Enums.ParseMode.Html);
+                await botClient.SendTextMessageAsync(message.Chat.Id, "<b>Выберите диапазон используя тег:</b>"+Environment.NewLine+contentService.Release, replyMarkup: keyboard,parseMode:Telegram.Bot.Types.Enums.ParseMode.Html);
                 release = true;
                 return;
             }

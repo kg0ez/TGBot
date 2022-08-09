@@ -10,6 +10,7 @@ namespace Bot.BusinessLogic.Services.Implementations
 	public class MovieService: IMovieService
     {
         public IMapper Mapper { get; set; }
+        public IContentService ContentService { get; set; }
         public bool ChoiceCategory { get; set; }
         List<MovieDto> moviesDto = new List<MovieDto>();
         private List<int> MovieNumbers { get; set; } = new List<int>();
@@ -42,9 +43,9 @@ namespace Bot.BusinessLogic.Services.Implementations
                     if (action == "country")
                         movies = context.Movies.Where(m => m.Country.Contains(value)).AsNoTracking().ToList();
                     else if (action == "genre")
-                        movies = context.Movies.Where(m => m.Genre.Contains(value)).AsNoTracking().ToList();
+                        movies = SearchGenre(value,context);
                     else if (action == "release")
-                        movies = ReleaseMovie(value,context);
+                        movies = SearchRelease(value,context);
                 }
                 moviesDto = Mapper.Map<List<MovieDto>>(movies);
                 ChoiceCategory = true;
@@ -54,7 +55,22 @@ namespace Bot.BusinessLogic.Services.Implementations
             var number = GenerateNumber(moviesDto.Count);
             return moviesDto[number];
         }
-        private List<Movie> ReleaseMovie(string value,ApplicationContext context)
+        private List<Movie> SearchGenre(string value, ApplicationContext context)
+        {
+            string numberString = string.Empty;
+            for (int i = 3; i < value.Length; i++)
+                numberString += value[i];
+            try
+            {
+                int number = Convert.ToInt32(numberString);
+                return context.Movies.Where(m => m.Genre.Contains(ContentService.GenreList[number])).AsNoTracking().ToList();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+        private List<Movie> SearchRelease(string value,ApplicationContext context)
         {
             int startRelease = default, finishRelease=default;
             if (value.Substring(0,1)!="/")

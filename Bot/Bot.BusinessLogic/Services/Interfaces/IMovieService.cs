@@ -6,6 +6,7 @@ namespace Bot.BusinessLogic.Services.Interfaces
 	public interface IMovieService
 	{
 		IMapper Mapper { get; set; }
+		IContentService ContentService { get; set; }
 		bool ChoiceCategory { get; set; }
 
 		MovieDto ChoiceMovie();

@@ -9,9 +9,9 @@ namespace Bot.Services.Interfaces
 		InlineKeyboardMarkup Button(string movie);
 		ReplyKeyboardMarkup MenuButton();
 
-		List<string> GenreList { get; }
-		List<string> CountryList { get; }
-		string Release { get; }
+		//List<string> CountryList { get; }
+		//string Release { get; }
+		//List<string> GenreList { get; }
 	}
 }
 

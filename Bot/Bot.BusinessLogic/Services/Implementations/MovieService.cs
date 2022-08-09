@@ -41,21 +41,23 @@ namespace Bot.BusinessLogic.Services.Implementations
                 using (ApplicationContext context = new ApplicationContext())
                 {
                     if (action == "country")
-                        movies = context.Movies.Where(m => m.Country.Contains(value)).AsNoTracking().ToList();
+                        movies = Search(value, context, action);
                     else if (action == "genre")
-                        movies = SearchGenre(value,context);
+                        movies = Search(value,context,action);
                     else if (action == "release")
                         movies = SearchRelease(value,context);
                 }
                 moviesDto = Mapper.Map<List<MovieDto>>(movies);
                 ChoiceCategory = true;
             }
+            if (moviesDto.Count == 1)
+                return moviesDto[0];
             if (moviesDto.Count<1)
                 return null;
             var number = GenerateNumber(moviesDto.Count);
             return moviesDto[number];
         }
-        private List<Movie> SearchGenre(string value, ApplicationContext context)
+        private List<Movie> Search(string value, ApplicationContext context,string action)
         {
             string numberString = string.Empty;
             for (int i = 3; i < value.Length; i++)
@@ -63,12 +65,25 @@ namespace Bot.BusinessLogic.Services.Implementations
             try
             {
                 int number = Convert.ToInt32(numberString);
-                return context.Movies.Where(m => m.Genre.Contains(ContentService.GenreList[number])).AsNoTracking().ToList();
-            }
-            catch (Exception)
-            {
+                if(action == "genre")
+                    return context.Movies.Where(m => m.Genre.Contains(ContentService.GenreList[number])).AsNoTracking().ToList();
+                else if(action == "country")
+                    return context.Movies.Where(m => m.Country.Contains(ContentService.CountryList[number])).AsNoTracking().ToList();
                 return null;
             }
+            catch (Exception) {return null;}
+        }
+        private List<Movie> SearchCountry(string value, ApplicationContext context)
+        {
+            string numberString = string.Empty;
+            for (int i = 3; i < value.Length; i++)
+                numberString += value[i];
+            try
+            {
+                int number = Convert.ToInt32(numberString);
+                return context.Movies.Where(m => m.Country.Contains(ContentService.CountryList[number])).AsNoTracking().ToList();
+            }
+            catch (Exception) {return null;}
         }
         private List<Movie> SearchRelease(string value,ApplicationContext context)
         {

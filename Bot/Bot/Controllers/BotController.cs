@@ -24,7 +24,6 @@ namespace Bot.Controllers
         {
             this.movieService = movieService;
             this.buttonService = buttonService;
-            this.contentService = contentService;
             _movies = new List<MovieDto>();
             messageHendler = new MessageHendler(movieService, buttonService, contentService);
         }
@@ -53,9 +52,6 @@ namespace Bot.Controllers
                 {
                     if (View.Genre == null)
                     {
-                        List<string> s = new List<string> { "sdfs", "sdfsd" };
-
-                        await botClient.SendTextMessageAsync(callbackQuery.Message.Chat.Id, $"/{string.Join(" ",s)}",parseMode: ParseMode.Html);
                         await botClient.SendTextMessageAsync(callbackQuery.Message.Chat.Id, "Для начала, необходимо выбрать фильм");
                         return;
                     }

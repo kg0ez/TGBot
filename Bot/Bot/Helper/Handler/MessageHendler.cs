@@ -8,9 +8,9 @@ namespace Bot.Helper.Handler
 {
 	public class MessageHendler
 	{
-        private readonly IMovieService movieService;
-        private readonly IButtonService buttonService;
-        private readonly IContentService contentService;
+        private readonly IMovieService _movieService;
+        private readonly IButtonService _buttonService;
+        private readonly IContentService _contentService;
 
         private bool _genre { get; set; }
         private bool _release { get; set; }
@@ -18,9 +18,9 @@ namespace Bot.Helper.Handler
 
         public MessageHendler(IMovieService movieService, IButtonService buttonService,IContentService contentService)
         {
-            this.movieService = movieService;
-            this.buttonService = buttonService;
-            this.contentService = contentService;
+            _movieService = movieService;
+            _buttonService = buttonService;
+            _contentService = contentService;
         }
 
         public async Task HandleMessage(ITelegramBotClient botClient, Message message)
@@ -28,105 +28,89 @@ namespace Bot.Helper.Handler
             if (message.Text == "Назад")
             {
                 _genre = _country = _release = false;
-                movieService.ChoiceCategory = false;
-                ReplyKeyboardMarkup keyboard = buttonService.MenuButton();
+                _movieService.ChoiceCategory = false;
+                ReplyKeyboardMarkup keyboard = _buttonService.MenuButton();
                 await botClient.SendTextMessageAsync(message.Chat.Id, "Выберите параметр", replyMarkup: keyboard);
                 return;
             }
 
-            if (_country)
+            if (_country || _genre || _release)
             {
-                var movie = movieService.ChoiceMovie(message.Text, "country");
+                string action = string.Empty;
+                if (_country)
+                    action = "country";
+                else if (_genre)
+                    action = "genre";
+                else if (_release)
+                    action = "release";
+                var movie = _movieService.ChoiceMovie(message.Text, action);
                 if (movie == null)
                     return;
-                await View.ShowMovie(movie, message.Chat.Id, botClient, buttonService.Button(movie.Link));
+                await View.ShowMovie(movie, message.Chat.Id, botClient, _buttonService.Button(movie.Link));
                 return;
-            }
-            if (_genre)
-            {
-                var movie = movieService.ChoiceMovie(message.Text, "genre");
-                if (movie == null)
-                    return;
-                await View.ShowMovie(movie, message.Chat.Id, botClient, buttonService.Button(movie.Link));
-                return;
-            }
-            if (_release)
-            {
-                var movie = movieService.ChoiceMovie(message.Text, "release");
-                if (movie == null)
-                    return;
-                await View.ShowMovie(movie, message.Chat.Id, botClient, buttonService.Button(movie.Link));
-                return;
-                int startValue, finishvalue;
-                if (message.Text == "/1980")
-                {
-                    startValue = 1910; 
-                }
             }
 
             if (message.Text == "/start")
             {
-                ReplyKeyboardMarkup keyboard = buttonService.MenuButton(new KeyboardButton[] { "Начать" });
+                ReplyKeyboardMarkup keyboard = _buttonService.MenuButton(new KeyboardButton[] { "Начать" });
                 await botClient.SendTextMessageAsync(message.Chat.Id, "Телеграм бот о фильмах", replyMarkup: keyboard);
                 return;
             }
 
             if (message.Text == "Начать" || message.Text == "В начало")
             {
-                ReplyKeyboardMarkup keyboard = buttonService.MenuButton(new KeyboardButton[] { "Случайный фильм", "Подбор по параметрам" });
+                ReplyKeyboardMarkup keyboard = _buttonService.MenuButton(new KeyboardButton[] { "Случайный фильм", "Подбор по параметрам" });
                 await botClient.SendTextMessageAsync(message.Chat.Id, "Выберите раздел", replyMarkup: keyboard);
                 return;
             }
             if (message.Text == "Случайный фильм")
             {
-
-                var movie = movieService.ChoiceMovie();
-                await View.ShowMovie(movie, message.Chat.Id, botClient, buttonService.Buttons(movie.Link));
+                var movie = _movieService.ChoiceMovie();
+                await View.ShowMovie(movie, message.Chat.Id, botClient, _buttonService.Buttons(movie.Link));
                 return;
             }
             if (message.Text == "Подбор по параметрам")
             {
-                ReplyKeyboardMarkup keyboard = buttonService.MenuButton();
+                ReplyKeyboardMarkup keyboard = _buttonService.MenuButton();
                 await botClient.SendTextMessageAsync(message.Chat.Id, "Выберите параметр", replyMarkup: keyboard);
                 return;
             }
             if (message.Text == "Страна")
             {
-                ReplyKeyboardMarkup keyboard = buttonService.MenuButton(new KeyboardButton[] { "Назад" });
+                ReplyKeyboardMarkup keyboard = _buttonService.MenuButton(new KeyboardButton[] { "Назад" });
                 string country = string.Empty;
 
-                for (int i = 0; i < contentService.CountryList.Count; i++)
-                    country += "• " + $"<i>{contentService.CountryList[i]}</i>" + $" (/ct{i})"+ Environment.NewLine;
+                for (int i = 0; i < _contentService.CountryList.Count; i++)
+                    country += "• " + $"<i>{_contentService.CountryList[i]}</i>" + $" (/ct{i})"+ Environment.NewLine;
 
                 await botClient.SendTextMessageAsync(message.Chat.Id, "<b>Выберите страну используя тег:</b>" + Environment.NewLine + country,parseMode:Telegram.Bot.Types.Enums.ParseMode.Html,replyMarkup: keyboard);
-                this._country = true;
+                _country = true;
                 return;
             }
             if (message.Text == "Жанр")
             {
-                ReplyKeyboardMarkup keyboard = buttonService.MenuButton(new KeyboardButton[] { "Назад" });
+                ReplyKeyboardMarkup keyboard = _buttonService.MenuButton(new KeyboardButton[] { "Назад" });
                 string genre = string.Empty;
                 
-                for (int i = 0; i < contentService.GenreList.Count; i++)
-                    genre += "• " + $"<i>{contentService.GenreList[i]}</i>" + $" (/gn{i})" +Environment.NewLine;
+                for (int i = 0; i < _contentService.GenreList.Count; i++)
+                    genre += "• " + $"<i>{_contentService.GenreList[i]}</i>" + $" (/gn{i})" +Environment.NewLine;
 
                 await botClient.SendTextMessageAsync(message.Chat.Id, "<b>Выберите жанр используя тег:</b>"+Environment.NewLine+ genre,parseMode:Telegram.Bot.Types.Enums.ParseMode.Html, replyMarkup: keyboard);
-                this._genre = true;
+                _genre = true;
                 return;
             }
             if (message.Text == "Год")
             {
-                ReplyKeyboardMarkup keyboard = buttonService.MenuButton(new KeyboardButton[] { "Назад" });
+                ReplyKeyboardMarkup keyboard = _buttonService.MenuButton(new KeyboardButton[] { "Назад" });
                 string release = string.Empty;
-                foreach (var item in contentService.ReleaseList)
+                foreach (var item in _contentService.ReleaseList)
                     release += "• " + item+Environment.NewLine;
 
                 await botClient.SendTextMessageAsync(message.Chat.Id, "<b>Выберите диапазон используя тег:</b>"+Environment.NewLine+release, replyMarkup: keyboard,parseMode:Telegram.Bot.Types.Enums.ParseMode.Html);
-                this._release = true;
+                _release = true;
                 return;
             }
-
-            await botClient.SendTextMessageAsync(message.Chat.Id, $"You said:\n{message.Text}");
+            await botClient.SendTextMessageAsync(message.Chat.Id, $"Команда: "+message.Text+"не найдена");
         }
     }
 }

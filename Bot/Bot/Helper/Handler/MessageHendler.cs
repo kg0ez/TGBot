@@ -43,12 +43,23 @@ namespace Bot.Helper.Handler
             if (genre)
             {
                 var movie = movieService.ChoiceMovie(message.Text, "genre");
+                if (movie == null)
+                    return;
                 await View.ShowMovie(movie, message.Chat.Id, botClient, buttonService.Button(movie.Link));
                 return;
             }
             if (release)
             {
-
+                var movie = movieService.ChoiceMovie(message.Text, "release");
+                if (movie == null)
+                    return;
+                await View.ShowMovie(movie, message.Chat.Id, botClient, buttonService.Button(movie.Link));
+                return;
+                int startValue, finishvalue;
+                if (message.Text == "/1980")
+                {
+                    startValue = 1910; 
+                }
             }
 
             if (message.Text == "/start")
@@ -103,14 +114,8 @@ namespace Bot.Helper.Handler
             if (message.Text == "Год")
             {
                 ReplyKeyboardMarkup keyboard = buttonService.MenuButton(new KeyboardButton[] { "Назад" });
-                await botClient.SendTextMessageAsync(message.Chat.Id, "Вернуться", replyMarkup: keyboard);
-
-                string genre = string.Empty;
-                foreach (var item in buttonService.GenreList)
-                    genre += "•" + item + Environment.NewLine;
-
-                await botClient.SendTextMessageAsync(message.Chat.Id, genre);
-                this.genre = true;
+                await botClient.SendTextMessageAsync(message.Chat.Id, "<b>Выберите диапазон используя тег:</b>"+Environment.NewLine+buttonService.Release, replyMarkup: keyboard,parseMode:Telegram.Bot.Types.Enums.ParseMode.Html);
+                release = true;
                 return;
             }
 

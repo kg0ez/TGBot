@@ -44,7 +44,7 @@ namespace Bot.BusinessLogic.Services.Implementations
                     else if (action == "genre")
                         movies = context.Movies.Where(m => m.Genre.Contains(value)).AsNoTracking().ToList();
                     else if (action == "release")
-                        movies = context.Movies.Where(m => m.Release.Contains(value)).AsNoTracking().ToList();
+                        movies = ReleaseMovie(value,context);
                 }
                 moviesDto = Mapper.Map<List<MovieDto>>(movies);
                 ChoiceCategory = true;
@@ -54,7 +54,33 @@ namespace Bot.BusinessLogic.Services.Implementations
             var number = GenerateNumber(moviesDto.Count);
             return moviesDto[number];
         }
-
+        private List<Movie> ReleaseMovie(string value,ApplicationContext context)
+        {
+            int startRelease = default, finishRelease=default;
+            if (value.Substring(0,1)!="/")
+                return null;
+            if (value=="/1980")
+            {
+                startRelease = 1910;
+                finishRelease = 1980;
+            }
+            else if(value == "/1990" || value == "/2000")
+            {
+                finishRelease = Convert.ToInt32(value.Substring(1));
+                startRelease = finishRelease - 10;
+            }
+            else if (value == "/2005" || value == "/2010" || value == "/2015" || value == "/2020")
+            {
+                finishRelease = Convert.ToInt32(value.Substring(1));
+                startRelease = finishRelease - 5;
+            }
+            else if (value == "/2022")
+            {
+                finishRelease = Convert.ToInt32(value.Substring(1));
+                startRelease = finishRelease - 2;
+            }
+            return context.Movies.Where(m => Convert.ToInt32(m.Release) > startRelease && Convert.ToInt32(m.Release) <= finishRelease).AsNoTracking().ToList();
+        }
         public IEnumerable<MovieDto> GetSimilar(string genre)
         {
             List<Movie> movies = new List<Movie>();

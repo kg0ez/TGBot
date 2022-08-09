@@ -1,21 +1,24 @@
 ﻿<Properties StartupConfiguration="{BDCC07A8-A200-4401-81DA-F62DA16BD023}|Default">
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.ItemProperties.Bot PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Bot/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Bot.BusinessLogic/Helper/View.cs">
     <Files>
-      <File FileName="Bot/Controllers/BotController.cs" Line="24" Column="38" />
-      <File FileName="Bot.BusinessLogic/Services/Interfaces/IMovieService.cs" Line="9" Column="3" />
-      <File FileName="Bot.BusinessLogic/Services/Implementations/MovieService.cs" Line="29" Column="19" />
-      <File FileName="Bot.BusinessLogic/Helper/Mapper/MappingProfile.cs" Line="1" Column="1" />
-      <File FileName="Bot.Models/Models/Movie.cs" Line="1" Column="1" />
-      <File FileName="Bot/Services/Interfaces/IButtonService.cs" Line="10" Column="45" />
-      <File FileName="Bot/Services/Implementations/ButtonService.cs" Line="58" Column="10" />
-      <File FileName="Bot/Program.cs" Line="21" Column="2" />
-      <File FileName="Bot.BusinessLogic/Bot.BusinessLogic.Telegram/Services/Interfaces/IErrorService.cs" Line="12" Column="1" />
-      <File FileName="Bot.BusinessLogic/Bot.BusinessLogic.Telegram/Services/Implementations/ErrorService.cs" Line="23" Column="1" />
+      <File FileName="Bot/Controllers/BotController.cs" Line="9" Column="1" />
+      <File FileName="Bot/Helper/Handler/MessageHendler.cs" Line="3" Column="22" />
+      <File FileName="Bot.BusinessLogic/Helper/View.cs" Line="1" Column="14" />
+      <File FileName="Bot/Services/Implementations/ButtonService.cs" Line="77" Column="14" />
+      <File FileName="Bot.BusinessLogic/Services/Implementations/ErrorService.cs" Line="1" Column="1" />
+      <File FileName="Bot/.gitignore" Line="1" Column="1" />
+      <File FileName="Bot/Services/Interfaces/IButtonService.cs" Line="1" Column="1" />
+      <File FileName="Bot.BusinessLogic/Services/Implementations/MovieService.cs" Line="24" Column="1" />
+      <File FileName="Bot/Program.cs" Line="1" Column="1" />
+      <File FileName="Bot.BusinessLogic/Services/Interfaces/IMovieService.cs" Line="1" Column="1" />
+      <File FileName="Bot.BusinessLogic/Services/Interfaces/IErrorService.cs" Line="1" Column="12" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -23,6 +26,7 @@
           <Node name="Bot" expanded="True">
             <Node name="Business Logic" expanded="True">
               <Node name="Bot.BusinessLogic" expanded="True">
+                <Node name="Bot.BusinessLogic.Telegram" expanded="True" />
                 <Node name="Helper" expanded="True">
                   <Node name="Mapper" expanded="True" />
                 </Node>
@@ -31,20 +35,16 @@
                   <Node name="Interfaces" expanded="True" />
                 </Node>
               </Node>
-              <Node name="Bot.BusinessLogic.Telegram" expanded="True">
-                <Node name="Services" expanded="True">
-                  <Node name="Implementations" expanded="True" />
-                  <Node name="Interfaces" expanded="True" />
-                </Node>
-              </Node>
             </Node>
             <Node name="Bot" expanded="True">
               <Node name="Controllers" expanded="True" />
+              <Node name="Helper" expanded="True">
+                <Node name="Handler" expanded="True" />
+              </Node>
               <Node name="Services" expanded="True">
                 <Node name="Implementations" expanded="True" />
                 <Node name="Interfaces" expanded="True" />
               </Node>
-              <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
         </State>

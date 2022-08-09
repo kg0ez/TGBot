@@ -11,6 +11,7 @@ namespace Bot.Services.Interfaces
 
 		List<string> GenreList { get; }
 		List<string> CountryList { get; }
+		string Release { get; }
 	}
 }
 

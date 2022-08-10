@@ -20,8 +20,8 @@
     <PackageReference Include="Telegram.Bot" Version="18.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bot.BusinessLogic\Bot.BusinessLogic.csproj" />
     <ProjectReference Include="..\Bot.BusinessLogic\Bot.BusinessLogic.Telegram\Bot.BusinessLogic.Telegram.csproj" />
+    <ProjectReference Include="..\Bot.BusinessLogic\Bot.BusinessLogic.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />

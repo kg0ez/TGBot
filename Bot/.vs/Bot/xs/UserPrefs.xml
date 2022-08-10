@@ -1,20 +1,28 @@
 ﻿<Properties StartupConfiguration="{BDCC07A8-A200-4401-81DA-F62DA16BD023}|Default">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Bot.BusinessLogic/Services/Implementations/MovieService.cs">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Bot PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Bot.BusinessLogic/Helper/Setting.cs">
     <Files>
-      <File FileName="Bot/Services/Implementations/ButtonService.cs" Line="34" Column="18" />
+      <File FileName="Bot/Services/Implementations/ButtonService.cs" Line="71" Column="1" />
       <File FileName="Bot/Helper/Handler/MessageHendler.cs" Line="19" Column="10" />
-      <File FileName="Bot/Services/Interfaces/IButtonService.cs" Line="18" Column="1" />
+      <File FileName="Bot/Services/Interfaces/IButtonService.cs" Line="14" Column="1" />
       <File FileName="Bot.Models/Models/Movie.cs" Line="1" Column="1" />
-      <File FileName="Bot/Controllers/BotController.cs" Line="26" Column="48" />
-      <File FileName="Bot.BusinessLogic/Services/Implementations/MovieService.cs" Line="113" Column="20" />
+      <File FileName="Bot/Controllers/BotController.cs" Line="82" Column="1" />
+      <File FileName="Bot.BusinessLogic/Services/Implementations/MovieService.cs" Line="16" Column="17" />
       <File FileName="Bot.BusinessLogic/Services/Interfaces/IContentService.cs" Line="7" Column="27" />
       <File FileName="Bot.BusinessLogic/Services/Implementations/ContentService.cs" Line="25" Column="6" />
-      <File FileName="Bot/Program.cs" Line="36" Column="86" />
-      <File FileName="Bot.BusinessLogic/Services/Interfaces/IMovieService.cs" Line="9" Column="3" />
+      <File FileName="Bot/Program.cs" Line="11" Column="1" />
+      <File FileName="Bot.BusinessLogic/Services/Interfaces/IMovieService.cs" Line="13" Column="12" />
       <File FileName="Bot.BusinessLogic/Helper/Mapper/MappingProfile.cs" Line="1" Column="1" />
-      <File FileName="Bot.BusinessLogic/Services/Implementations/ErrorService.cs" Line="1" Column="1" />
+      <File FileName="Bot.BusinessLogic/Services/Implementations/ErrorService.cs" Line="9" Column="9" />
       <File FileName="Bot.BusinessLogic/Helper/View.cs" Line="1" Column="1" />
+      <File FileName="Bot.BusinessLogic/Services/Interfaces/IErrorService.cs" Line="7" Column="3" />
+      <File FileName="Bot.BusinessLogic/Helper/Setting.cs" Line="27" Column="9" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -22,27 +30,13 @@
           <Node name="Bot" expanded="True">
             <Node name="Business Logic" expanded="True">
               <Node name="Bot.BusinessLogic" expanded="True">
+                <Node name="Helper" expanded="True" />
                 <Node name="Services" expanded="True">
                   <Node name="Implementations" expanded="True" />
-                  <Node name="Interfaces" expanded="True" />
                 </Node>
               </Node>
             </Node>
-            <Node name="Model" expanded="True">
-              <Node name="Bot.Models" expanded="True">
-                <Node name="Models" expanded="True" />
-              </Node>
-            </Node>
-            <Node name="Bot" expanded="True">
-              <Node name="Controllers" expanded="True" />
-              <Node name="Helper" expanded="True">
-                <Node name="Handler" expanded="True" />
-              </Node>
-              <Node name="Services" expanded="True">
-                <Node name="Implementations" expanded="True" />
-                <Node name="Interfaces" expanded="True" />
-              </Node>
-            </Node>
+            <Node name="Bot" expanded="True" />
           </Node>
         </State>
       </Pad>
@@ -51,10 +45,4 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.Bot PreferredExecutionTarget="MonoDevelop.Default" />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>

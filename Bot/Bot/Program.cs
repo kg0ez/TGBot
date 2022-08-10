@@ -9,7 +9,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Telegram.Bot;
 using Telegram.Bot.Polling;
 
-
 var serviceProvider = new ServiceCollection()
             .AddLogging()
             .AddSingleton<IButtonService, ButtonService>()

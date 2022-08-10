@@ -8,10 +8,6 @@ namespace Bot.Services.Interfaces
 		ReplyKeyboardMarkup MenuButton(KeyboardButton[] keyboardButtons);
 		InlineKeyboardMarkup Button(string movie);
 		ReplyKeyboardMarkup MenuButton();
-
-		//List<string> CountryList { get; }
-		//string Release { get; }
-		//List<string> GenreList { get; }
 	}
 }
 

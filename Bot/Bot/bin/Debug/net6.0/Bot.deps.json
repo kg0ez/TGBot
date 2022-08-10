@@ -9,6 +9,7 @@
       "Bot/1.0.0": {
         "dependencies": {
           "Bot.BusinessLogic": "1.0.0",
+          "Bot.BusinessLogic.Telegram": "1.0.0",
           "Telegram.Bot": "18.0.0"
         },
         "runtime": {

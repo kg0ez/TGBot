@@ -80,7 +80,11 @@ namespace Bot.Controllers
             if (callbackQuery.Data.StartsWith("Далее"))
             {
                 var movie = movieService.ChoiceMovie("","");
-                await View.ShowMovie(movie, callbackQuery.Message.Chat.Id, botClient, buttonService.Button(movie.Link));
+                try
+                {
+                    await View.ShowMovie(movie, callbackQuery.Message.Chat.Id, botClient, buttonService.Button(movie.Link));
+                }
+                catch (Exception) { await botClient.SendTextMessageAsync(callbackQuery.Message.Chat.Id, "Фильмов с таким критерием больше нет"); }
                 return;
             }
             await botClient.SendTextMessageAsync(

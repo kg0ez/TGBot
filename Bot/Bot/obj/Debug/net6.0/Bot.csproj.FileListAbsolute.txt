@@ -63,5 +63,3 @@
 /Users/kirill/Desktop/TGBot/Bot/Bot/bin/Debug/net6.0/Bot.Common.dll
 /Users/kirill/Desktop/TGBot/Bot/Bot/bin/Debug/net6.0/Bot.BusinessLogic.pdb
 /Users/kirill/Desktop/TGBot/Bot/Bot/bin/Debug/net6.0/Bot.Common.pdb
-/Users/kirill/Desktop/TGBot/Bot/Bot/bin/Debug/net6.0/Bot.BusinessLogic.Telegram.dll
-/Users/kirill/Desktop/TGBot/Bot/Bot/bin/Debug/net6.0/Bot.BusinessLogic.Telegram.pdb

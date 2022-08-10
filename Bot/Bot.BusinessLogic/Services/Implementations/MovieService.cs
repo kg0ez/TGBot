@@ -14,6 +14,7 @@ namespace Bot.BusinessLogic.Services.Implementations
         public bool ChoiceCategory { get; set; }
         List<MovieDto> moviesDto = new List<MovieDto>();
         private List<int> MovieNumbers { get; set; } = new List<int>();
+        private int _count = default;
 
 
         public MovieDto ChoiceMovie()
@@ -25,7 +26,9 @@ namespace Bot.BusinessLogic.Services.Implementations
                 int count = context.Movies.AsNoTracking().ToList().Count - 1;
                 if (count <1)
                     return null;
-                int value = GenerateNumber(context.Movies.AsNoTracking().ToList().Count - 1);
+                if (_count == default)
+                    _count = context.Movies.AsNoTracking().ToList().Count - 1;
+                int value = GenerateNumber(_count);
                 
                 movie = context.Movies.AsNoTracking().FirstOrDefault(m => m.Id == value);
             }
@@ -54,8 +57,12 @@ namespace Bot.BusinessLogic.Services.Implementations
                 return moviesDto[0];
             if (moviesDto.Count<1)
                 return null;
-            var number = GenerateNumber(moviesDto.Count);
-            return moviesDto[number];
+            try
+            {
+                var number = GenerateNumber(moviesDto.Count);
+                return moviesDto[number];
+            }
+            catch (Exception) { return null; }
         }
         private List<Movie> Search(string value, ApplicationContext context,string action)
         {
@@ -65,23 +72,14 @@ namespace Bot.BusinessLogic.Services.Implementations
             try
             {
                 int number = Convert.ToInt32(numberString);
-                if(action == "genre")
-                    return context.Movies.Where(m => m.Genre.Contains(ContentService.GenreList[number])).AsNoTracking().ToList();
+                IQueryable<Movie> query = context.Movies;
+                if (action != "genre" && action != "country")
+                    return null;
+                if (action == "genre")
+                    query = query.Where(m => m.Genre.Contains(ContentService.GenreList[number]));
                 else if(action == "country")
-                    return context.Movies.Where(m => m.Country.Contains(ContentService.CountryList[number])).AsNoTracking().ToList();
-                return null;
-            }
-            catch (Exception) {return null;}
-        }
-        private List<Movie> SearchCountry(string value, ApplicationContext context)
-        {
-            string numberString = string.Empty;
-            for (int i = 3; i < value.Length; i++)
-                numberString += value[i];
-            try
-            {
-                int number = Convert.ToInt32(numberString);
-                return context.Movies.Where(m => m.Country.Contains(ContentService.CountryList[number])).AsNoTracking().ToList();
+                    query = query.Where(m => m.Country.Contains(ContentService.CountryList[number]));
+                return query.AsNoTracking().ToList();
             }
             catch (Exception) {return null;}
         }
@@ -110,14 +108,24 @@ namespace Bot.BusinessLogic.Services.Implementations
                 finishRelease = Convert.ToInt32(value.Substring(1));
                 startRelease = finishRelease - 2;
             }
-            return context.Movies.Where(m => Convert.ToInt32(m.Release) > startRelease && Convert.ToInt32(m.Release) <= finishRelease).AsNoTracking().ToList();
+            if (startRelease == default)
+                return null;
+            IQueryable<Movie> query = context.Movies;
+            query = query.Where(m => Convert.ToInt32(m.Release) > startRelease && Convert.ToInt32(m.Release) <= finishRelease);
+            return query.AsNoTracking().ToList();
         }
         public IEnumerable<MovieDto> GetSimilar(string genre)
         {
             List<Movie> movies = new List<Movie>();
 
             using (ApplicationContext context = new ApplicationContext())
-                movies = context.Movies.Where(m => m.Genre.Contains(genre)).AsNoTracking().ToList();
+            {
+                if (string.IsNullOrWhiteSpace(genre))
+                    return null;
+                IQueryable<Movie> query = context.Movies;
+                query = query.Where(x => x.Genre.Contains(genre));
+                movies = query.AsNoTracking().ToList();
+            }
 
             List<MovieDto> moviesDto = Mapper.Map<List<MovieDto>>(movies);
             return moviesDto;
@@ -126,7 +134,7 @@ namespace Bot.BusinessLogic.Services.Implementations
         private int GenerateNumber(int length)
         {
             Random random = new Random();
-            int value;
+            int value, block=default;
             if (MovieNumbers.Count > length-1)
                 MovieNumbers = new List<int>();
             while (true)
@@ -146,6 +154,10 @@ namespace Bot.BusinessLogic.Services.Implementations
                     MovieNumbers.Add(value);
                     break;
                 }
+                if (block > 12)
+                {    MovieNumbers = new List<int>();
+                    return 1000; }
+                block++;
             }
             return value;
         }

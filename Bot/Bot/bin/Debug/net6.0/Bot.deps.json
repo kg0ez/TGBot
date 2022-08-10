@@ -9,7 +9,6 @@
       "Bot/1.0.0": {
         "dependencies": {
           "Bot.BusinessLogic": "1.0.0",
-          "Bot.BusinessLogic.Telegram": "1.0.0",
           "Telegram.Bot": "18.0.0"
         },
         "runtime": {
@@ -499,14 +498,6 @@
           "Bot.BusinessLogic.dll": {}
         }
       },
-      "Bot.BusinessLogic.Telegram/1.0.0": {
-        "dependencies": {
-          "Telegram.Bot": "18.0.0"
-        },
-        "runtime": {
-          "Bot.BusinessLogic.Telegram.dll": {}
-        }
-      },
       "Bot.Common/1.0.0": {
         "runtime": {
           "Bot.Common.dll": {}
@@ -831,11 +822,6 @@
       "hashPath": "telegram.bot.18.0.0.nupkg.sha512"
     },
     "Bot.BusinessLogic/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Bot.BusinessLogic.Telegram/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

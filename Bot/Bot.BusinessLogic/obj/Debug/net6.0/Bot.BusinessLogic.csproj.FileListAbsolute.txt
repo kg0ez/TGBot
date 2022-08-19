@@ -1,0 +1,17 @@
+/Users/kirill/Desktop/TGBot/Bot/Bot.BusinessLogic/bin/Debug/net6.0/Bot.BusinessLogic.deps.json
+/Users/kirill/Desktop/TGBot/Bot/Bot.BusinessLogic/bin/Debug/net6.0/Bot.BusinessLogic.dll
+/Users/kirill/Desktop/TGBot/Bot/Bot.BusinessLogic/bin/Debug/net6.0/Bot.BusinessLogic.pdb
+/Users/kirill/Desktop/TGBot/Bot/Bot.BusinessLogic/bin/Debug/net6.0/Bot.Common.dll
+/Users/kirill/Desktop/TGBot/Bot/Bot.BusinessLogic/bin/Debug/net6.0/Bot.Models.dll
+/Users/kirill/Desktop/TGBot/Bot/Bot.BusinessLogic/bin/Debug/net6.0/Bot.Common.pdb
+/Users/kirill/Desktop/TGBot/Bot/Bot.BusinessLogic/bin/Debug/net6.0/Bot.Models.pdb
+/Users/kirill/Desktop/TGBot/Bot/Bot.BusinessLogic/obj/Debug/net6.0/Bot.BusinessLogic.csproj.AssemblyReference.cache
+/Users/kirill/Desktop/TGBot/Bot/Bot.BusinessLogic/obj/Debug/net6.0/Bot.BusinessLogic.GeneratedMSBuildEditorConfig.editorconfig
+/Users/kirill/Desktop/TGBot/Bot/Bot.BusinessLogic/obj/Debug/net6.0/Bot.BusinessLogic.AssemblyInfoInputs.cache
+/Users/kirill/Desktop/TGBot/Bot/Bot.BusinessLogic/obj/Debug/net6.0/Bot.BusinessLogic.AssemblyInfo.cs
+/Users/kirill/Desktop/TGBot/Bot/Bot.BusinessLogic/obj/Debug/net6.0/Bot.BusinessLogic.csproj.CoreCompileInputs.cache
+/Users/kirill/Desktop/TGBot/Bot/Bot.BusinessLogic/obj/Debug/net6.0/Bot.BusinessLogic.csproj.CopyComplete
+/Users/kirill/Desktop/TGBot/Bot/Bot.BusinessLogic/obj/Debug/net6.0/Bot.BusinessLogic.dll
+/Users/kirill/Desktop/TGBot/Bot/Bot.BusinessLogic/obj/Debug/net6.0/refint/Bot.BusinessLogic.dll
+/Users/kirill/Desktop/TGBot/Bot/Bot.BusinessLogic/obj/Debug/net6.0/Bot.BusinessLogic.pdb
+/Users/kirill/Desktop/TGBot/Bot/Bot.BusinessLogic/obj/Debug/net6.0/ref/Bot.BusinessLogic.dll

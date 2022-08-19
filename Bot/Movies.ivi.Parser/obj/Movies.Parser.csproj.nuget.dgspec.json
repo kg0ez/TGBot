@@ -1,0 +1,132 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/kirill/Desktop/TGBot/Bot/Movies.ivi.Parser/Movies.Parser.csproj": {}
+  },
+  "projects": {
+    "/Users/kirill/Desktop/TGBot/Bot/Bot.Models/Bot.Models.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/kirill/Desktop/TGBot/Bot/Bot.Models/Bot.Models.csproj",
+        "projectName": "Bot.Models",
+        "projectPath": "/Users/kirill/Desktop/TGBot/Bot/Bot.Models/Bot.Models.csproj",
+        "packagesPath": "/Users/kirill/.nuget/packages/",
+        "outputPath": "/Users/kirill/Desktop/TGBot/Bot/Bot.Models/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/kirill/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.7, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.301/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/kirill/Desktop/TGBot/Bot/Movies.ivi.Parser/Movies.Parser.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/kirill/Desktop/TGBot/Bot/Movies.ivi.Parser/Movies.Parser.csproj",
+        "projectName": "Movies.Parser",
+        "projectPath": "/Users/kirill/Desktop/TGBot/Bot/Movies.ivi.Parser/Movies.Parser.csproj",
+        "packagesPath": "/Users/kirill/.nuget/packages/",
+        "outputPath": "/Users/kirill/Desktop/TGBot/Bot/Movies.ivi.Parser/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/kirill/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/kirill/Desktop/TGBot/Bot/Bot.Models/Bot.Models.csproj": {
+                "projectPath": "/Users/kirill/Desktop/TGBot/Bot/Bot.Models/Bot.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "HtmlAgilityPack": {
+              "target": "Package",
+              "version": "[1.11.43, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.301/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
